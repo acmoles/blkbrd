@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>BLKBRD</ion-title>
+    <button ion-button icon-only menuToggle right show color="light" style="display:block !important;" (click)="presentSettingsModal($event)">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="true">
+  <button ion-button block outline color="light" style="margin-bottom: 12px;" (click)="presentAddModal($event)">New Channel</button>
+  <ion-list id="bLKBRD-list1">
+
+    <ion-item-sliding>
+      <ion-item (click)="itemTapped($event)">
+        Item 1
+        <span class="item-note">08:12, 21/03</span>
+        <ion-icon name="md-lock" class="item-icon-right"></ion-icon>
+      </ion-item>
+      <ion-item-options side="right" (ionSwipe)="saveItem(item)">
+        <button ion-button expandable color="danger" (click)="saveItem(item)">
+          <ion-icon name="md-remove"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        Item 2
+        <span class="item-note">08:12, 21/03</span>
+        <ion-icon name="md-lock" class="item-icon-right"></ion-icon>
+      </ion-item>
+      <ion-item-options side="right" (ionSwipe)="saveItem(item)">
+        <button ion-button expandable color="danger" (click)="saveItem(item)">
+          <ion-icon name="md-remove"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item>
+        Item 3
+        <span class="item-note">08:12, 21/03</span>
+        <ion-icon name="md-lock" class="item-icon-right"></ion-icon>
+      </ion-item>
+      <ion-item-options side="right" (ionSwipe)="saveItem(item)">
+        <button ion-button expandable color="danger" (click)="saveItem(item)">
+          <ion-icon name="md-remove"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

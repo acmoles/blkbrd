@@ -1,0 +1,23 @@
+$dark: #000000;
+$stable: #000000;
+$link-color: $stable;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+.channel-centred {
+	position: absolute;
+	top: 50%;
+	Left: 50%;
+	-ms-transform: translate(-50% -50%);
+	-webkit-transform: translate(-50% -50%);
+	-moz-transform: translate(-50% -50%);
+	transform: translate(-50% -50%);
+}
+
+ion-view,.pane,.view {
+	background-color: #000000;
+}
+
+body {
+	color: #FFFFFF;
+}
+

@@ -3,13 +3,21 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { TestPage } from '../pages/test/test';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ChannelsPage } from '../pages/channels/channels';
+import { AppSettingsPage } from '../pages/channels/settings';
+import { AddChannelPage } from '../pages/channels/addChannel';
+import { ChannelPage } from '../pages/channel/channel';
+import { AddPostPage } from '../pages/channel/addPost';
+import { ChannelHistoryPage } from '../pages/channel/history';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TestPage;
+  rootPage:any = ChannelsPage;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

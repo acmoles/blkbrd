@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavController, ModalController, NavParams } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
 import { ChannelHistoryPage } from './history';
 import { AddPostPage } from './addPost';
 
@@ -9,8 +10,36 @@ import { AddPostPage } from './addPost';
 })
 export class ChannelPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private statusBar: StatusBar) {
 
+  }
+
+  isVisible= true;
+  isInvisible= false;
+  touchOverlay= false;
+
+  ngOnInit() {
+    this.statusBar.hide();
+    setTimeout(() => {
+      this.isVisible= false;
+      this.isInvisible= true;
+      this.touchOverlay= true;
+    }, 2000);
+  }
+
+  ngOnDestroy() {
+    this.statusBar.show();
+  }
+
+  removeOverlay() {
+    this.isVisible= true;
+    this.isInvisible= false;
+    this.touchOverlay= false;
+    setTimeout(() => {
+      this.isVisible= false;
+      this.isInvisible= true;
+      this.touchOverlay= true;
+    }, 5000);
   }
 
   presentNewPostModal() {

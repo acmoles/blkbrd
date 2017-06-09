@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="channelFadeIn" [ngClass]="{channelVisible: isVisible, channelInvisible: isInvisible}">
     <button ion-button icon-only menuToggle right show color="light" style="display:block !important;" (click)="presentNewPostModal($event)">
       <ion-icon name="md-add"></ion-icon>
     </button>
@@ -15,7 +15,9 @@
 <div class="bottom-left-button">
   <ion-buttons>
   <button ion-button icon-only clear color="light" style="display:block !important;" (click)="presentHistoryModal($event)">
-    <ion-icon name="md-list"></ion-icon>
+    <ion-icon class="channelFadeIn" [ngClass]="{channelVisible: isVisible, channelInvisible: isInvisible}" name="md-list"></ion-icon>
   </button>
 </ion-buttons>
 </div>
+
+<div *ngIf="touchOverlay" (click)="removeOverlay($event)" class="touch-overlay"></div>

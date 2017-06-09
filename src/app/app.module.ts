@@ -3,8 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Insomnia } from '@ionic-native/insomnia';
 
-import { MyApp } from './app.component';
+import { blkbrd } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
@@ -14,11 +15,18 @@ import { ChannelPage } from '../pages/channel/channel';
 import { AddPostPage } from '../pages/channel/addPost';
 import { ChannelHistoryPage } from '../pages/channel/history';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AuthProvider } from '../auth';
+
 import { ionicConfig } from '../ionConfig';
+import { firebaseConfig } from '../firebaseConfig';
 
 @NgModule({
   declarations: [
-    MyApp,
+    blkbrd,
     LoginPage,
     SignupPage,
     ChannelsPage,
@@ -30,11 +38,14 @@ import { ionicConfig } from '../ionConfig';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot( MyApp, ionicConfig ),
+    IonicModule.forRoot( blkbrd, ionicConfig ),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    blkbrd,
     LoginPage,
     SignupPage,
     ChannelsPage,
@@ -47,6 +58,8 @@ import { ionicConfig } from '../ionConfig';
   providers: [
     StatusBar,
     SplashScreen,
+    Insomnia,
+    AuthProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

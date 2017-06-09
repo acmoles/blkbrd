@@ -154,3 +154,7 @@ ion-item-sliding .item {
     margin: 0;
   }
 }
+
+.invalid {
+  background-color: map-get($colors, danger);
+}

@@ -8,13 +8,14 @@
 </ion-header>
 
 <ion-content padding="true" class="has-header">
-  <form id="NEWACCOUNT">
+  <ion-grid fixed>
+  <form id="NEWACCOUNT" [formGroup]="signupForm" (submit)="signUp()" novalidate>
     <ion-list>
-      <ion-input class="item item-input" placeholder="name"></ion-input>
-      <ion-input class="item item-input" placeholder="email"></ion-input>
-      <ion-input class="item item-input" placeholder="password"></ion-input>
-      <ion-input class="item item-input" placeholder="password (confirm)"></ion-input>
-      <button ion-button block outline color="secondary" style="margin-top: 12px;">Signup</button>
+      <ion-input class="item item-input" #name formControlName="name" type="name" placeholder="name"></ion-input>
+      <ion-input class="item item-input" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" #email formControlName="email" type="email" placeholder="email"></ion-input>
+      <ion-input class="item item-input" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" #password formControlName="password" type="password" placeholder="password"></ion-input>
+      <button ion-button block outline color="secondary" style="margin-top: 12px;" type="submit" [disabled]="false">Signup</button>
     </ion-list>
   </form>
+</ion-grid>
 </ion-content>

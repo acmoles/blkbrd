@@ -10,9 +10,9 @@
 <ion-content padding="true" class="has-header">
   <form id="Settings" class="list">
     <ion-list>
-      <ion-input class="item item-input" placeholder="name"></ion-input>
-      <button ion-button block outline color="light" style="margin-top: 12px;">Update</button>
-      <div class="spacer" style="width: 300px; height: 68px;"></div>
+      <button ion-button block outline color="danger" style="margin-top: 12px; margin-bottom: 44px;" (click)="logout()">Logout</button>
+      <!-- <ion-input class="item item-input" placeholder="name"></ion-input>
+      <button ion-button block outline color="light" style="margin-top: 12px; margin-bottom: 44px;">Update</button> -->
       <ion-item>
         <ion-label>Keep Screen On</ion-label>
         <ion-toggle checked="true"></ion-toggle>

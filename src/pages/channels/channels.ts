@@ -4,14 +4,23 @@ import { AppSettingsPage } from './settings';
 import { AddChannelPage } from './addChannel';
 import { ChannelPage } from '../channel/channel';
 
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import "rxjs/add/operator/map";
+
 @Component({
   selector: 'channels-page',
   templateUrl: 'channels.html'
 })
 export class ChannelsPage {
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  channels: FirebaseListObservable<any[]>;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,  public modalCtrl: ModalController, public afDB: AngularFireDatabase) {
+    this.channels = afDB.list('/channels', {
+        query: {
+          limitToLast: 24
+        }
+      }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 
   presentSettingsModal() {

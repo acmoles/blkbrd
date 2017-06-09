@@ -8,17 +8,19 @@
 </ion-header>
 
 <ion-content padding="true" class="has-header">
-  <form id="lOGIN">
+  <ion-grid fixed>
+  <form id="lOGIN" [formGroup]="loginForm" (submit)="login()" novalidate>
     <ion-list>
-      <ion-input class="item item-input" placeholder="email"></ion-input>
-      <ion-input class="item item-input" placeholder="password"></ion-input>
-    <button ion-button block outline color="light" style="margin-top: 12px;">Login</button>
-    <div>
+      <ion-input class="item item-input" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" #email formControlName="email" type="email" placeholder="email"></ion-input>
+      <ion-input class="item item-input" #password formControlName="password" type="password" placeholder="password"></ion-input>
+    <button ion-button block outline color="light" style="margin-top: 12px;" type="submit" [disabled]="false">Login</button>
+    <div (click)="reset($event)">
       <p>Forgotten your password? Click
         <strong>Here</strong>
       </p>
     </div>
   </ion-list>
   </form>
-  <button ion-button block outline color="secondary">Create New Account</button>
+  <button ion-button block outline color="secondary" (click)="gotoSignUp($event)">Create New Account</button>
+</ion-grid>
 </ion-content>

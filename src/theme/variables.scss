@@ -76,3 +76,12 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$grid-max-widths: (
+  sm: 420px,
+  md: 600px,
+  lg: 610px,
+  xl: 620px
+);
+
+$grid-padding-width: 0px;

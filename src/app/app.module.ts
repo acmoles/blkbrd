@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthProvider } from '../auth';
+// import { DatabaseConnector } from '../connect';
 
 import { ionicConfig } from '../ionConfig';
 import { firebaseConfig } from '../firebaseConfig';

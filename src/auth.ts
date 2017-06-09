@@ -6,7 +6,8 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthProvider {
 
-constructor(public afAuth: AngularFireAuth) {}
+constructor(public afAuth: AngularFireAuth) {
+}
 
 loginUser(newEmail: string, newPassword: string): firebase.Promise<any> {
   console.log('login triggered');
@@ -26,6 +27,11 @@ logoutUser(): firebase.Promise<any> {
 signupUser(newEmail: string, newPassword: string, newName: string): firebase.Promise<any> {
   console.log('signup triggered');
   return this.afAuth.auth.createUserWithEmailAndPassword(newEmail, newPassword);
+}
+
+getName() {
+  console.log('getting username');
+  return this.afAuth.auth.currentUser.displayName;
 }
 
 }

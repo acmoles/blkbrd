@@ -4,6 +4,9 @@ import { AppSettingsPage } from './settings';
 import { AddChannelPage } from './addChannel';
 import { ChannelPage } from '../channel/channel';
 
+import { LoginPage } from '../login/login';
+import { AuthProvider } from '../../auth';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import "rxjs/add/operator/map";
 
@@ -13,9 +16,11 @@ import "rxjs/add/operator/map";
 })
 export class ChannelsPage {
 
-  channels: FirebaseListObservable<any[]>;
+  public channels: FirebaseListObservable<any[]>;
+  public username: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,  public modalCtrl: ModalController, public afDB: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+    public modalCtrl: ModalController, public afDB: AngularFireDatabase, public authData: AuthProvider) {
     this.channels = afDB.list('/channels', {
         query: {
           limitToLast: 24
@@ -23,8 +28,17 @@ export class ChannelsPage {
       }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 
+  ngOnInit() {
+    this.username = this.authData.getName();
+  }
+
+  logout() {
+    this.navCtrl.setRoot(LoginPage);
+    this.authData.logoutUser();
+  }
+
   presentSettingsModal() {
-  let settingsModal = this.modalCtrl.create(AppSettingsPage, {data: null}, {
+  let settingsModal = this.modalCtrl.create(AppSettingsPage, {logout: this.logout.bind(this)}, {
 
   });
   settingsModal.onDidDismiss(data => {

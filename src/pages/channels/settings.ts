@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { ViewController, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../login/login';
-
-import { AuthProvider } from '../../auth';
 
 @Component({
   selector: 'settings-page',
@@ -11,17 +8,16 @@ import { AuthProvider } from '../../auth';
 export class AppSettingsPage {
 
   screenOn: boolean;
+  logout: any;
 
-  constructor(public viewCtrl: ViewController, public authData: AuthProvider, public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+      this.logout =  this.navParams.get('logout');
   }
 
-  logout() {
+  logoutParent() {
     let data = { 'foo': 'bar' };
     this.viewCtrl.dismiss(data);
-    // this.navCtrl.setRoot(LoginPage);
-
-    this.authData.logoutUser();
+    this.logout();
   }
 
     dismiss() {

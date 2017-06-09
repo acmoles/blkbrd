@@ -36,9 +36,14 @@ export class SignupPage {
           console.log(this.signupForm.value);
         } else {
           this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.name)
-          .then(() => {
-            this.navCtrl.setRoot(ChannelsPage);
-          }, (error) => {
+          .then((user) => {
+            user.updateProfile({
+                displayName: this.signupForm.value.name
+              }).then(() => {
+                console.log('success adding name!')
+                this.navCtrl.setRoot(ChannelsPage);
+              }
+          )}, (error) => {
             this.loading.dismiss().then( () => {
               var errorMessage: string = error.message;
                 let alert = this.alertCtrl.create({

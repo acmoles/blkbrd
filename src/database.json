@@ -1,0 +1,58 @@
+{
+   "channels" : [
+      {
+      	 "name" : "channel 1",
+      	 "password": "passw0rd",
+      	 "messages" : [
+      	    {
+      	       "name" : "Marcus Reutger",
+               "message": "test message 1",
+               "timestamp": "older",
+               "uri": "none"
+      	    },
+            {
+               "name" : "Latest author",
+               "message": "test message 2",
+               "timestamp": "latest",
+               "uri": "none"
+            }
+      	 ]
+      },
+      {
+         "name" : "channel 2",
+         "password": "passw0rd",
+         "messages" : [
+            {
+               "name" : "Ant",
+               "message": "Middle test message 1",
+               "timestamp": "older",
+               "uri": "none"
+            },
+            {
+               "name" : "Rob",
+               "message": "Middle test message 2 - I'm the Pits",
+               "timestamp": "latest",
+               "uri": "none"
+            }
+         ]
+      },
+      {
+         "name" : "channel 3",
+         "password": "passw0rd",
+         "messages" : [
+            {
+               "name" : "Channel 3 old author",
+               "message": "Channel 3 test message 1",
+               "timestamp": "older",
+               "uri": "none"
+            },
+            {
+               "name" : "Channel 3 latest author",
+               "message": "Channel 3 test message",
+               "timestamp": "latest",
+               "uri": "none"
+            }
+         ]
+      }
+   ]
+}

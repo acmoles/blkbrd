@@ -6,18 +6,23 @@
   </ion-navbar>
 </ion-header>
 
-<div class="channel-wrap">
-  <p style="color:#FFFFFF;font-size:18px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-    quis, sem. Nulla consequat massa quis enim.</p>
-  <p style="color:#C5C5C5;font-size:14px;">Marcus Reutger, 08:14, 23/07</p>
-</div>
+<ion-slides direction="vertical">
 
-<div class="bottom-left-button">
+  <ion-slide *ngFor="let message of messages">
+    <div class="channel-wrap">
+      <p style="color:#FFFFFF;font-size:18px;">{{message.message}}</p>
+      <p style="color:#C5C5C5;font-size:14px;">{{message.name}}, {{message.timestamp}}</p>
+    </div>
+  </ion-slide>
+
+</ion-slides>
+
+<!-- <div class="bottom-left-button">
   <ion-buttons>
   <button ion-button icon-only clear color="light" style="display:block !important;" (click)="presentHistoryModal($event)">
     <ion-icon class="channelFadeIn" [ngClass]="{channelVisible: isVisible, channelInvisible: isInvisible}" name="md-list"></ion-icon>
   </button>
 </ion-buttons>
-</div>
+</div> -->
 
 <div *ngIf="touchOverlay" (click)="removeOverlay($event)" class="touch-overlay"></div>

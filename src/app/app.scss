@@ -124,36 +124,30 @@ ion-item-sliding .item {
     left: 24px;
 }
 
-.channel-wrap {
-  position: absolute;
-  width: 95%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .bottom-left-button {
   position: absolute;
   right: -6px;
   bottom: -3px;
 }
 
-.history-item {
-  padding: 16px;
-  p {
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0.5em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-  }
-  .item-inner {
-    padding: 0 !important;
-  }
-  .ion-label, .label-ios {
-    white-space: normal;
-    margin: 0;
-  }
-}
+// History page
+
+// .history-item {
+//   padding: 16px;
+//   p {
+//     -webkit-margin-before: 0em;
+//     -webkit-margin-after: 0.5em;
+//     -webkit-margin-start: 0px;
+//     -webkit-margin-end: 0px;
+//   }
+//   .item-inner {
+//     padding: 0 !important;
+//   }
+//   .ion-label, .label-ios {
+//     white-space: normal;
+//     margin: 0;
+//   }
+// }
 
 .invalid {
   background-color: map-get($colors, danger);

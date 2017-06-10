@@ -1,5 +1,16 @@
 channel-page {
 
+.channel-wrap {
+  position: absolute;
+  width: 95%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  p {
+    text-align: left;
+  }
+}
+
 .channelFadeIn{
   transition: opacity 2s;
   -webkit-transition: opacity 2s;
@@ -19,9 +30,11 @@ channel-page {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 99;
   // background-color: red;
 }
 
+// Not used, rather transitions
 @keyframes fadeIn {
   from {
     opacity: 0;

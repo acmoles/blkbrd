@@ -12,11 +12,13 @@
   <button ion-button block outline color="light" style="margin-bottom: 12px;" (click)="presentAddModal($event)">New Channel</button>
   <ion-list id="bLKBRD-list1">
 
-    <ion-item-sliding *ngFor="let channel of channels | async">
-      <ion-item (click)="itemTapped($event)">
-        {{channel.$value}}
-        <span class="item-note">08:12, 21/03</span>
-        <ion-icon name="md-lock" class="item-icon-right"></ion-icon>
+    <ion-item-sliding *ngFor="let channel of channels | async; let i = index">
+      <ion-item (click)="itemTapped(channel, i)">
+        {{channel.name}}
+        <span class="item-note" *ngFor="let message of channel.messages; let isLatest = last"><span *ngIf="isLatest">{{message.timestamp}}</span></span>
+
+        <ion-icon name="md-lock" *ngIf="channel.password" class="item-icon-right"></ion-icon>
+
       </ion-item>
       <ion-item-options side="right" (ionSwipe)="saveItem(item)">
         <button ion-button expandable color="danger" (click)="saveItem(item)">

@@ -1,0 +1,106 @@
+{
+   "films" : [
+      {
+      	 "title" : "John Wick",
+      	 "summary": "Ex-assassin John Wick takes down the Russian Mafia in New York",
+      	 "date" : "2014",
+      	 "duration": "97 minutes",
+      	 "rating": "15",
+      	 "cover" : "none",
+      	 "actors" : [
+      	    {
+      	       "name" : "Keanu Reeves"
+      	    },
+      	    {
+      	       "name" : "Willem Dafoe"
+      	    },
+      	    {
+      	       "name" : "Michael Nyqvist"
+      	    },
+      	    {
+      	       "name" : "Ian McShane"
+      	    },
+      	    {
+      	       "name" : "John Leguizamo"
+      	    },
+      	    {
+      	       "name" : "Bridget Moynahan"
+      	    },
+      	    {
+      	       "name" : "Alfie Allen"
+      	    },
+      	    {
+      	       "name" : "Adrianne Palicki"
+      	    }
+      	 ],
+      	 "genres" : [
+      	    {
+      	       "name" : "Action"
+      	    },
+      	    {
+      	       "name" : "Thriller"
+      	    }
+      	 ]
+      },
+      {
+         "title" : "Gladiator",
+         "summary": "The general who became a slave, the slave who became a gladiator, the gladiator who defied an empire",
+         "date" : "2000",
+         "duration": "2hr 29 minutes",
+         "rating": "15",
+         "cover" : "none",
+         "actors" : [
+            {
+               "name" : "Russell Crowe"
+            },
+            {
+               "name" : "Oliver Reed"
+            },
+            {
+               "name" : "Joaquin Phoenix"
+            },
+            {
+               "name" : "Connie Nielsen"
+            },
+            {
+               "name" : "Ralf Moeller"
+            }
+         ],
+         "genres" : [
+            {
+               "name" : "Action"
+            },
+            {
+               "name" : "Historical"
+            }
+         ]
+      },
+      {
+         "title" : "Catch me if you can",
+         "summary": "Frank Abagnale Jr, master of deception",
+         "date" : "2002",
+         "duration": "135 minutes",
+         "rating": "12",
+         "cover" : "none",
+         "actors" : [
+            {
+               "name" : "Tom Hanks"
+            },
+            {
+               "name" : "Leonardo Dicaprio"
+            },
+            {
+               "name" : "Christopher Walken"
+            }
+         ],
+         "genres" : [
+            {
+               "name" : "Action"
+            },
+            {
+               "name" : "Thriller"
+            }
+         ]
+      }
+   ]
+}

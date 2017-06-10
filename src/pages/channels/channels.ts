@@ -21,15 +21,16 @@ export class ChannelsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public modalCtrl: ModalController, public afDB: AngularFireDatabase, public authData: AuthProvider) {
-    this.channels = afDB.list('/channels', {
+  }
+
+  ionViewDidLoad() {
+    this.username = this.authData.getName();
+
+    this.channels = this.afDB.list('/channels', {
         query: {
           limitToLast: 24
         }
       }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
-  }
-
-  ngOnInit() {
-    this.username = this.authData.getName();
   }
 
   logout() {
@@ -45,7 +46,6 @@ export class ChannelsPage {
     console.log(data);
   });
   settingsModal.present();
-  console.log('model clicked');
 }
 
   presentAddModal() {
@@ -56,13 +56,15 @@ export class ChannelsPage {
     console.log(data);
   });
   addModal.present();
-  console.log('model clicked');
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ChannelPage, {
-      item: item
-    });
+  itemTapped(channel, index) {
+    let params = {
+      index: index,
+      name: channel.name,
+      user: this.username
+    }
+    this.navCtrl.push(ChannelPage, params);
 }
 
 }

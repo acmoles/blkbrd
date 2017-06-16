@@ -34,6 +34,19 @@ export class SignupPage {
 
     if (!this.signupForm.valid){
           console.log(this.signupForm.value);
+          let validAlert = this.alertCtrl.create({
+            message: "Please enter a valid email address",
+            buttons: [
+              {
+                text: "Ok",
+                role: 'cancel',
+                handler: () => {
+
+                }
+              }
+            ]
+          });
+          validAlert.present();
         } else {
           this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.name)
           .then((user) => {

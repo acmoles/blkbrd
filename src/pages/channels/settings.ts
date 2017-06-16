@@ -15,8 +15,7 @@ export class AppSettingsPage {
   }
 
   logoutParent() {
-    let data = { 'foo': 'bar' };
-    this.viewCtrl.dismiss(data);
+    this.viewCtrl.dismiss();
     this.logout();
   }
 

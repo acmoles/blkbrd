@@ -6,13 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
-import { AppSettingsPage } from '../pages/channels/settings';
-import { AddChannelPage } from '../pages/channels/addChannel';
-import { ChannelPage } from '../pages/channel/channel';
-import { AddPostPage } from '../pages/channel/addPost';
-import { ChannelHistoryPage } from '../pages/channel/history';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from '../auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,13 +17,14 @@ export class blkbrd {
   rootPage:any;
   pages: Array<{ title: string, component: any }>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
-        const authObserver = afAuth.authState.subscribe( user => {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public afAuth: AngularFireAuth) {
+
+    const authObserver = this.afAuth.authState.subscribe(user => {
       if (user) {
         this.rootPage = ChannelsPage;
         authObserver.unsubscribe();
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = SignupPage;
         authObserver.unsubscribe();
       }
     });

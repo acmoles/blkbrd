@@ -46,7 +46,6 @@
 }
 
 .item {
-  border-color: #ddd;
   background-color: #fff;
   color: #444;
   position: relative;
@@ -54,8 +53,7 @@
   display: block;
   margin: -1px;
   padding: 6px 16px 6px 16px;
-  border-width: 1px;
-  border-style: solid;
+  border-bottom: solid 1px #ddd;
   font-size: 16px;
 }
 
@@ -94,8 +92,12 @@ ion-item-sliding .item {
     color: #aaa;
 }
 
+[dir="ltr"] .label-ios {
+    margin: 11px 15px 11px 0;
+}
+
 .item-icon-right {
-  right: 14px;
+  right: 10px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -151,4 +153,13 @@ ion-item-sliding .item {
 
 .invalid {
   background-color: map-get($colors, danger);
+}
+
+ion-spinner {
+  width: 48px;
+  height: 48px;
+}
+
+.ion-md-remove {
+  padding-bottom: 0;
 }

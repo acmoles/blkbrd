@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding="true" class="has-header">
-  <form id="AddChannel" class="list">
+  <form id="AddChannel" class="list" [formGroup]="addChannel" (submit)="addNewChannel()" novalidate>
   <ion-list>
-    <ion-input class="item item-input" placeholder="name"></ion-input>
-    <ion-input class="item item-input" placeholder="password (optional)"></ion-input>
-  <button ion-button block outline color="light" style="margin-top: 12px;">Create</button>
+    <ion-input class="item item-input" #name formControlName="name" type="name" placeholder="name"></ion-input>
+    <ion-input class="item item-input"  #password formControlName="password" type="password" placeholder="password (optional)"></ion-input>
+  <button ion-button block outline color="light" type="submit" style="margin-top: 12px;">Create</button>
 </ion-list>
   </form>
 </ion-content>

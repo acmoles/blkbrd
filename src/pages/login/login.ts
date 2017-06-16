@@ -29,11 +29,28 @@ export class LoginPage {
 
   }
 
+  ionViewDidLoad() {
+    if (this.authData.isLoggedin()) {
+      this.authData.logoutUser();
+    }
+  }
+
   login(formData) {
 
     if (!this.loginForm.valid){
-      console.log('invalid');
-      console.log(this.loginForm.value);
+      let validAlert = this.alertCtrl.create({
+        message: "Please enter a valid email address",
+        buttons: [
+          {
+            text: "Ok",
+            role: 'cancel',
+            handler: () => {
+
+            }
+          }
+        ]
+      });
+      validAlert.present();
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authData => {
@@ -55,6 +72,7 @@ export class LoginPage {
 
       this.loading = this.loadingCtrl.create({
         dismissOnPageChange: true,
+
       });
       this.loading.present();
     }
@@ -64,7 +82,19 @@ export class LoginPage {
 reset() {
 
 if (!this.loginForm.valid){
-      console.log(this.loginForm.value);
+  let validAlert = this.alertCtrl.create({
+    message: "Please enter your email address to reset your password",
+    buttons: [
+      {
+        text: "Ok",
+        role: 'cancel',
+        handler: () => {
+
+        }
+      }
+    ]
+  });
+  validAlert.present();
     } else {
       this.authData.resetPassword(this.loginForm.value.email)
       .then((user) => {
@@ -75,7 +105,7 @@ if (!this.loginForm.valid){
               text: "Ok",
               role: 'cancel',
               handler: () => {
-                
+
               }
             }
           ]

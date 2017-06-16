@@ -4,6 +4,6 @@ export const ionicConfig = {
   iconMode: 'md',
   backButtonIcon: 'md-arrow-back',
   pageTransition: 'wp-transition',
-  activator: 'highlight'
-
+  activator: 'highlight',
+  loadingSpinner: 'crescent',
 }

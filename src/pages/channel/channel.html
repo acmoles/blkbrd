@@ -8,10 +8,10 @@
 
 <ion-slides direction="vertical">
 
-  <ion-slide *ngFor="let message of messages">
+  <ion-slide *ngFor="let message of messsagesArray">
     <div class="channel-wrap">
       <p style="color:#FFFFFF;font-size:18px;">{{message.message}}</p>
-      <p style="color:#C5C5C5;font-size:14px;">{{message.name}}, {{message.timestamp}}</p>
+      <p style="color:#C5C5C5;font-size:14px;">{{message.name}} <span>{{message.timestamp}}</span></p>
     </div>
   </ion-slide>
 

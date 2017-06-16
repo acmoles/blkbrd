@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController, NavController, ModalController, NavParams, Slides } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { ChannelHistoryPage } from './history';
+// import { ChannelHistoryPage } from './history';
 import { AddPostPage } from './addPost';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import "rxjs/add/operator/map";
+import { ChannelsProvider } from '../../getChannels';
+import * as Rx from 'rxjs';
 
 @Component({
   selector: 'channel-page',
@@ -20,14 +20,16 @@ export class ChannelPage {
   public overlayTimeout: any;
   public initialTimout: any;
 
-  public channels: FirebaseListObservable<any[]>;
-  public messages: any = [];
+  public channelSub: Rx.Subscription;
+  public messages: Rx.Observable<any>;
+  public messagesSub: Rx.Subscription;
+  public messsagesArray: any[];
   public currentUser: string;
   public currentChannel: string;
   public channelIndex: number;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, private statusBar: StatusBar,
-    public navParams: NavParams, public viewCtrl: ViewController, public afDB: AngularFireDatabase
+    public navParams: NavParams, public viewCtrl: ViewController, public channelsProvider: ChannelsProvider
   ) {
   }
 
@@ -37,17 +39,19 @@ export class ChannelPage {
     this.currentUser = this.navParams.get('user');
     this.currentChannel = this.navParams.get('name');
     this.channelIndex = this.navParams.get('index');
-    console.log('current user: ' + this.currentUser + 'current channel: ' + this.currentChannel)
+    console.log('current user: ' + this.currentUser + ', current channel: ' + this.currentChannel);
 
-    this.channels = this.afDB.list('/channels', {
-        query: {
-          limitToLast: 24
-        }
-    }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
-
-    this.channels.subscribe(channels => {
-      this.messages = channels[this.channelIndex].messages.slice().reverse();
+    this.channelSub = this.channelsProvider.getChannel(this.channelIndex).subscribe(channel => {
+      this.messages = Rx.Observable.create(observer => {
+          observer.next(channel.messages);
+      });
     })
+
+    this.messagesSub = this.messages.subscribe(messages => {
+      this.messsagesArray = messages
+      this.slides.update();
+      // this.updateSlider();
+    });
 
     this.initialTimout = setTimeout(() => {
       this.isVisible= false;
@@ -67,9 +71,21 @@ export class ChannelPage {
 
   }
 
+//   ionViewDidEnter() {
+//     if (this.messages) {
+//     this.updateSlider();
+//   } else {
+//     console.log('something went wrong');
+//   }
+// }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.statusBar.show();
+  }
+
+  updateSlider() {
+    let messagesLength = this.messsagesArray.length;
+    this.slides.slideTo(messagesLength - 1, 500);
   }
 
   removeOverlay() {
@@ -84,25 +100,20 @@ export class ChannelPage {
   }
 
   presentNewPostModal() {
-  let addPostModal = this.modalCtrl.create(AddPostPage, {data: null}, {
-
+  let addPostModal = this.modalCtrl.create(AddPostPage, {userName: this.currentUser}, {
   });
   addPostModal.onDidDismiss(data => {
-    console.log(data);
+    if (data) {
+      console.log(data);
+      this.messsagesArray.push(data);
+      this.channelsProvider.addMessage(this.channelIndex, this.messsagesArray).then(data => {
+        console.log('successfully added new message');
+      }, error => {
+        console.log('ERROR creating new channel ' + error);
+      });
+    }
   });
   addPostModal.present();
-  console.log('model clicked');
 }
-
-  // presentHistoryModal() {
-  // let historyModal = this.modalCtrl.create(ChannelHistoryPage, {data: null}, {
-  //
-  // });
-  // historyModal.onDidDismiss(data => {
-  //   console.log(data);
-  // });
-  // historyModal.present();
-  // console.log('model clicked');
-  // }
 
 }

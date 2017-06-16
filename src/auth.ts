@@ -34,4 +34,17 @@ getName() {
   return this.afAuth.auth.currentUser.displayName;
 }
 
+isLoggedin() {
+  let loggedIn: boolean;
+  const authObserver = this.afAuth.authState.subscribe(user => {
+    if (user) {
+      loggedIn = true;
+      authObserver.unsubscribe();
+    } else {
+      loggedIn = false;
+      authObserver.unsubscribe();
+    }
+  });
+  return loggedIn;
+  }
 }

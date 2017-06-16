@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthProvider } from '../auth';
+import { ChannelsProvider } from '../getChannels';
 // import { DatabaseConnector } from '../connect';
 
 import { ionicConfig } from '../ionConfig';
@@ -61,6 +62,7 @@ import { firebaseConfig } from '../firebaseConfig';
     SplashScreen,
     Insomnia,
     AuthProvider,
+    ChannelsProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

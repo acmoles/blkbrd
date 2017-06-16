@@ -85,3 +85,11 @@ $grid-max-widths: (
 );
 
 $grid-padding-width: 0px;
+
+// Spinner
+$loading-ios-spinner-color: #fff;
+$loading-ios-background: none;
+
+// Alert boxes
+$alert-ios-border-radius: 0;
+$alert-ios-button-text-color: color($colors, secondary)

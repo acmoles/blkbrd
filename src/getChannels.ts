@@ -36,7 +36,7 @@ constructor(public afDB: AngularFireDatabase) {
   }
 
   addMessage(id: number, messages) {
-    let timestamp = firebase.database.ServerValue.TIMESTAMP;
+    // let timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.messages = this.afDB.object('/channels/' + id + '/messages');
     return this.messages.set(messages)
   }

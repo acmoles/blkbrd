@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { ViewController, AlertController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import * as firebase from 'firebase/app';
-
-
 @Component({
   selector: 'add-post',
   templateUrl: 'addPost.html'
@@ -42,10 +39,15 @@ export class AddPostPage {
         });
         validAlert.present();
       } else {
+        // let timestamp = firebase.database.ServerValue.TIMESTAMP
+        let d = new Date();
+        let dateArray = d.toString().split(' ');
+        let time = dateArray[4].slice(0, -3);
+        let timestamp = time + ', ' + dateArray[0] + ' ' + dateArray[2]
         let data = {
            name : this.currentUser,
            message: this.addPost.value.message,
-           timestamp: firebase.database.ServerValue.TIMESTAMP,
+           timestamp: timestamp,
            uri: 'none'
         };
         this.viewCtrl.dismiss(data);

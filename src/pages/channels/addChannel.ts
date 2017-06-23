@@ -11,7 +11,7 @@ import * as firebase from 'firebase/app';
 })
 export class AddChannelPage {
 
-  addChannel:FormGroup;
+  addChannel: FormGroup;
 
   constructor(public viewCtrl: ViewController, public formBuilder: FormBuilder, public alertCtrl: AlertController) {
     this.addChannel = formBuilder.group({
@@ -21,37 +21,41 @@ export class AddChannelPage {
   }
 
   addNewChannel() {
-    if (!this.addChannel.valid){
-        let validAlert = this.alertCtrl.create({
-          message: "Please enter a channel name",
-          buttons: [
-            {
-              text: "Ok",
-              role: 'cancel',
-              handler: () => {
+    if (!this.addChannel.valid) {
+      let validAlert = this.alertCtrl.create({
+        message: "Please enter a channel name",
+        buttons: [
+          {
+            text: "Ok",
+            role: 'cancel',
+            handler: () => {
 
-              }
             }
-          ]
-        });
-        validAlert.present();
-      } else {
+          }
+        ]
+      });
+      validAlert.present();
+    } else {
+      let d = new Date();
+      let dateArray = d.toString().split(' ');
+      let time = dateArray[4].slice(0, -3);
+      let timestamp = time + ', ' + dateArray[0] + ' ' + dateArray[2]
       let data = {
-          messages: [{
-            	       name : 'BLKBRD',
-                     message: 'Hello channel, this is the first post in the channel',
-                     timestamp: firebase.database.ServerValue.TIMESTAMP,
-                     uri: 'none'
-            	    }],
-          name: this.addChannel.value.name,
-          password: this.addChannel.value.password
+        messages: [{
+          name: 'BLKBRD',
+          message: 'Hello channel, this is the first post in the channel',
+          timestamp: timestamp,
+          uri: 'none'
+        }],
+        name: this.addChannel.value.name,
+        password: this.addChannel.value.password
       };
-        this.viewCtrl.dismiss(data);
+      this.viewCtrl.dismiss(data);
     }
   }
 
   dismiss() {
-  this.viewCtrl.dismiss();
-}
+    this.viewCtrl.dismiss();
+  }
 
 }

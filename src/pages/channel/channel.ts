@@ -13,6 +13,7 @@ import * as Rx from 'rxjs';
 })
 export class ChannelPage {
   @ViewChild(Slides) slides: Slides;
+  public haveSlides: boolean = true;
 
   public isVisible: boolean = true;
   public isInvisible: boolean = false;
@@ -20,10 +21,8 @@ export class ChannelPage {
   public overlayTimeout: any;
   public initialTimout: any;
 
-  public channelSub: Rx.Subscription;
-  public messages: Rx.Observable<any>;
-  public messagesSub: Rx.Subscription;
-  public messsagesArray: any[];
+  public channel$: Rx.Subscription;
+  public messages: any[];
   public currentUser: string;
   public currentChannel: string;
   public channelIndex: number;
@@ -39,81 +38,74 @@ export class ChannelPage {
     this.currentUser = this.navParams.get('user');
     this.currentChannel = this.navParams.get('name');
     this.channelIndex = this.navParams.get('index');
-    console.log('current user: ' + this.currentUser + ', current channel: ' + this.currentChannel);
+    console.log('current user: ' + this.currentUser + ', current channel: ' + this.currentChannel + ', current channel index: ' + this.channelIndex);
 
-    this.channelSub = this.channelsProvider.getChannel(this.channelIndex).subscribe(channel => {
-      this.messages = Rx.Observable.create(observer => {
-          observer.next(channel.messages);
-      });
-    })
-
-    this.messagesSub = this.messages.subscribe(messages => {
-      this.messsagesArray = messages
-      this.slides.update();
-      // this.updateSlider();
+    this.channel$ = this.channelsProvider.getChannel(this.channelIndex).subscribe(channel => {
+      this.messages = channel.messages;
+      console.log('messages incoming: ')
+      console.log(this.messages);
     });
 
     this.initialTimout = setTimeout(() => {
-      this.isVisible= false;
-      this.isInvisible= true;
-      this.touchOverlay= true;
+      this.isVisible = false;
+      this.isInvisible = true;
+      this.touchOverlay = true;
     }, 4000);
 
     this.slides.ionSlideDidChange.subscribe(() => {
       clearTimeout(this.overlayTimeout);
       clearTimeout(this.initialTimout);
       this.overlayTimeout = setTimeout(() => {
-        this.isVisible= false;
-        this.isInvisible= true;
-        this.touchOverlay= true;
+        this.isVisible = false;
+        this.isInvisible = true;
+        this.touchOverlay = true;
       }, 8000);
     })
 
   }
 
-//   ionViewDidEnter() {
-//     if (this.messages) {
-//     this.updateSlider();
-//   } else {
-//     console.log('something went wrong');
-//   }
-// }
+  ionViewDidEnter() {
+    window.addEventListener('orientationchange', () => {
+        console.log('orientation changed');
+        this.haveSlides = false;
+        setTimeout(() => {this.haveSlides = true;}, 1000);
+    });
+  }
 
   ionViewWillLeave() {
     this.statusBar.show();
   }
 
-  updateSlider() {
-    let messagesLength = this.messsagesArray.length;
-    this.slides.slideTo(messagesLength - 1, 500);
+  slideChanged() {
+    console.log('slides did change');
   }
 
   removeOverlay() {
-    this.isVisible= true;
-    this.isInvisible= false;
-    this.touchOverlay= false;
+    this.isVisible = true;
+    this.isInvisible = false;
+    this.touchOverlay = false;
     this.overlayTimeout = setTimeout(() => {
-      this.isVisible= false;
-      this.isInvisible= true;
-      this.touchOverlay= true;
+      this.isVisible = false;
+      this.isInvisible = true;
+      this.touchOverlay = true;
     }, 8000);
   }
 
   presentNewPostModal() {
-  let addPostModal = this.modalCtrl.create(AddPostPage, {userName: this.currentUser}, {
-  });
-  addPostModal.onDidDismiss(data => {
-    if (data) {
-      console.log(data);
-      this.messsagesArray.push(data);
-      this.channelsProvider.addMessage(this.channelIndex, this.messsagesArray).then(data => {
-        console.log('successfully added new message');
-      }, error => {
-        console.log('ERROR creating new channel ' + error);
-      });
-    }
-  });
-  addPostModal.present();
-}
+    let addPostModal = this.modalCtrl.create(AddPostPage, { userName: this.currentUser }, {
+    });
+    addPostModal.onDidDismiss(data => {
+      if (data) {
+        console.log(data);
+        this.messages.unshift(data);
+        this.channelsProvider.addMessage(this.channelIndex, this.messages).then(data => {
+          console.log('successfully added new message');
+        }, error => {
+          console.log('ERROR creating new channel ' + error);
+        });
+      }
+    });
+    addPostModal.present();
+  }
 
 }

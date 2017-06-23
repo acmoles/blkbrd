@@ -26,6 +26,8 @@ import { ChannelsProvider } from '../getChannels';
 import { ionicConfig } from '../ionConfig';
 import { firebaseConfig } from '../firebaseConfig';
 
+import { mutationObserverDirective } from '../mutation';
+
 @NgModule({
   declarations: [
     blkbrd,
@@ -37,6 +39,7 @@ import { firebaseConfig } from '../firebaseConfig';
     AddChannelPage,
     AddPostPage,
     ChannelHistoryPage,
+    mutationObserverDirective,
   ],
   imports: [
     BrowserModule,

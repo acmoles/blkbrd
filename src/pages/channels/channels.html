@@ -12,10 +12,10 @@
   <button ion-button block outline color="light" style="margin-bottom: 12px;" (click)="presentAddModal($event)">New Channel</button>
   <ion-list id="bLKBRD-list1">
 
-    <ion-item-sliding class="opacityIn" *ngFor="let channel of channels; let i = index">
+    <ion-item-sliding class="opacity-in" [ngClass]="{'first-load': firstLoad}" *ngFor="let channel of channels; let i = index">
       <ion-item (click)="itemTapped(channel, i)">
         {{channel.name}}
-        <span class="item-note" *ngFor="let message of channel.messages; let isLatest = last"><span *ngIf="isLatest">{{message.timestamp}}</span></span>
+        <span class="item-note" *ngFor="let message of channel.messages; let isLatest = first"><span *ngIf="isLatest">{{message.timestamp}}</span></span>
 
         <ion-icon name="md-lock" *ngIf="channel.password" class="item-icon-right"></ion-icon>
 

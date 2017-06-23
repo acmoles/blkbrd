@@ -2,19 +2,24 @@ channels-page {
     @keyframes opacityIn {
     0% {
       opacity: 0;
+      transform: translateY(20px);
     }
     100% {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  .opacityIn {
+  .opacity-in {
     opacity: 0;
     animation: opacityIn 1s forwards;
     -webkit-animation: opacityIn 1s forwards;
+  }
+
+  .first-load {
     @for $i from 1 through 24 {
             &:nth-child(#{$i}) {
-             animation-delay: (0.1s * $i);
+             animation-delay: (0.3s * $i);
             }
         }
   }

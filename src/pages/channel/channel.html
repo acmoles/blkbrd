@@ -6,16 +6,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-slides direction="vertical">
+<ion-slides *ngIf="haveSlides" direction="vertical" (ionSlideDidChange)="slideChanged()">
 
-  <ion-slide *ngFor="let message of messsagesArray">
+  <ion-slide *ngFor="let message of messages" class="fadeIn">
     <div class="channel-wrap">
       <p style="color:#FFFFFF;font-size:18px;">{{message.message}}</p>
-      <p style="color:#C5C5C5;font-size:14px;">{{message.name}} <span>{{message.timestamp}}</span></p>
+      <p style="color:#C5C5C5;font-size:14px;"><strong>{{message.name}}</strong><span style="margin-left: 5px;">{{message.timestamp}}</span></p>
     </div>
   </ion-slide>
 
 </ion-slides>
+
+<!-- <ion-list>
+  <ion-item *ngFor="let message of messsages | async">
+    <p style="color:#FFFFFF;font-size:18px;">{{message.message}}</p>
+    <p style="color:#C5C5C5;font-size:14px;">{{message.name}} <span>{{message.timestamp}}</span></p>
+  </ion-item>
+</ion-list> -->
+
 
 <!-- <div class="bottom-left-button">
   <ion-buttons>

@@ -152,7 +152,7 @@ ion-item-sliding .item {
 // }
 
 .invalid {
-  background-color: map-get($colors, danger);
+  // background-color: map-get($colors, danger);
 }
 
 ion-spinner {
@@ -161,5 +161,5 @@ ion-spinner {
 }
 
 .ion-md-remove {
-  padding-bottom: 0;
+  padding-bottom: 0 !important;
 }

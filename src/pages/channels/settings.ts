@@ -12,6 +12,7 @@ export class AppSettingsPage {
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
       this.logout =  this.navParams.get('logout');
+      this.screenOn = this.navParams.get('screenOn');
   }
 
   logoutParent() {
@@ -20,7 +21,7 @@ export class AppSettingsPage {
   }
 
     dismiss() {
-    let data = { 'foo': 'bar' };
+    let data = { screenOn: this.screenOn };
     this.viewCtrl.dismiss(data);
   }
 

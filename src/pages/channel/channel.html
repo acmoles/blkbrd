@@ -10,8 +10,9 @@
 
   <ion-slide *ngFor="let message of messages" class="fadeIn">
     <div class="channel-wrap">
-      <p style="color:#FFFFFF;font-size:18px;">{{message.message}}</p>
-      <p style="color:#C5C5C5;font-size:14px;"><strong>{{message.name}}</strong><span style="margin-left: 5px;">{{message.timestamp}}</span></p>
+      <p class="message">{{message.message}}<br>
+        <span class="author"><strong>{{message.name}}</strong><span>{{message.timestamp}}</span></span>
+      </p>
     </div>
   </ion-slide>
 

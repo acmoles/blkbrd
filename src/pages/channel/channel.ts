@@ -50,7 +50,7 @@ export class ChannelPage {
       this.isVisible = false;
       this.isInvisible = true;
       this.touchOverlay = true;
-    }, 4000);
+    }, 8000);
 
     this.slides.ionSlideDidChange.subscribe(() => {
       clearTimeout(this.overlayTimeout);
@@ -59,7 +59,7 @@ export class ChannelPage {
         this.isVisible = false;
         this.isInvisible = true;
         this.touchOverlay = true;
-      }, 8000);
+      }, 10000);
     })
 
   }
@@ -68,11 +68,13 @@ export class ChannelPage {
     window.addEventListener('orientationchange', () => {
         console.log('orientation changed');
         this.haveSlides = false;
-        setTimeout(() => {this.haveSlides = true;}, 1000);
+        // this.haveSlides = true;
+        setTimeout(() => {this.haveSlides = true;}, 500);
     });
   }
 
   ionViewWillLeave() {
+    this.channel$.unsubscribe();
     this.statusBar.show();
   }
 

@@ -2,13 +2,27 @@ channel-page {
 
 .channel-wrap {
   position: absolute;
-  width: 95%;
+  width: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  p {
-    text-align: left;
-  }
+}
+
+.message {
+  text-align: left;
+  color:#FFFFFF;
+  font-size:18px;
+  display:inline-block
+}
+
+.author {
+  display: inline-block;
+  margin-top: 5px;
+  color:#BFBFBF;
+  font-size:13px;
+   span {
+     margin-left: 5px;
+   }
 }
 
 .channelFadeIn{

@@ -8,6 +8,8 @@ import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../auth';
 import { ChannelsProvider } from '../../getChannels';
 
+import { Insomnia } from '@ionic-native/insomnia';
+
 import "rxjs/add/operator/map";
 import { Subscription } from 'rxjs';
 
@@ -23,10 +25,11 @@ export class ChannelsPage {
   public loading: Loading;
 
   public firstLoad: boolean = true;
+  public screenOn: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public modalCtrl: ModalController, public channelsProvider: ChannelsProvider, public authData: AuthProvider,
-    public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+    public loadingCtrl: LoadingController, public alertCtrl: AlertController, public insomnia: Insomnia) {
   }
 
   ionViewDidLoad() {
@@ -38,6 +41,18 @@ export class ChannelsPage {
       this.channels = channels;
       loading.dismiss();
     })
+    // initialize insomnia - default to on
+    if (this.screenOn) {
+        this.insomnia.keepAwake().then(
+          () => console.log('insomnia success'),
+          () => console.log('insomnia error')
+        );
+    } else {
+      this.insomnia.allowSleepAgain().then(
+          () => console.log('insomnia turn off success'),
+          () => console.log('insomnia turn off error')
+        );
+    }
   }
 
   ionViewWillLeave() {
@@ -45,16 +60,28 @@ export class ChannelsPage {
   }
 
   logout() {
+    this.channelsSub.unsubscribe();
     this.navCtrl.setRoot(LoginPage);
     this.channels = null;
   }
 
   presentSettingsModal() {
-  let settingsModal = this.modalCtrl.create(AppSettingsPage, {logout: this.logout.bind(this)}, {
+  let settingsModal = this.modalCtrl.create(AppSettingsPage, {logout: this.logout.bind(this), screenOn: this.screenOn}, {
   });
   settingsModal.onDidDismiss(data => {
     if (data) {
-      console.log(data);
+      this.screenOn = data.screenOn;
+      if (this.screenOn) {
+          this.insomnia.keepAwake().then(
+            () => console.log('insomnia success'),
+            () => console.log('insomnia error')
+          );
+      } else {
+        this.insomnia.allowSleepAgain().then(
+            () => console.log('insomnia turn off success'),
+            () => console.log('insomnia turn off error')
+          );
+      }
     }
   });
   settingsModal.present();

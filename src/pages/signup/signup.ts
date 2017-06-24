@@ -35,7 +35,7 @@ export class SignupPage {
     if (!this.signupForm.valid){
           console.log(this.signupForm.value);
           let validAlert = this.alertCtrl.create({
-            message: "Please enter a valid email address",
+            message: "Please enter a valid email address and password (longer than 6 characters)",
             buttons: [
               {
                 text: "Ok",
@@ -48,12 +48,17 @@ export class SignupPage {
           });
           validAlert.present();
         } else {
+          this.loading = this.loadingCtrl.create({
+            dismissOnPageChange: true,
+          });
+          this.loading.present();
           this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.name)
           .then((user) => {
             user.updateProfile({
                 displayName: this.signupForm.value.name
               }).then(() => {
                 console.log('success adding name!')
+                this.loading.dismiss();
                 this.navCtrl.setRoot(ChannelsPage);
               }
           )}, (error) => {
@@ -71,11 +76,6 @@ export class SignupPage {
               alert.present();
             });
           });
-
-          this.loading = this.loadingCtrl.create({
-            dismissOnPageChange: true,
-          });
-          this.loading.present();
         }
       }
 

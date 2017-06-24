@@ -54,6 +54,13 @@ export class AddPostPage {
     }
   }
 
+  deleteLast() {
+    let data = {
+      deleteLast: true
+    }
+    this.viewCtrl.dismiss(data);
+  }
+
   dismiss() {
   this.viewCtrl.dismiss();
   }

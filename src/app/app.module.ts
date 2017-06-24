@@ -21,7 +21,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthProvider } from '../auth';
 import { ChannelsProvider } from '../getChannels';
-// import { DatabaseConnector } from '../connect';
+import { ReversePipe } from '../reversePipe';
 
 import { ionicConfig } from '../ionConfig';
 import { firebaseConfig } from '../firebaseConfig';
@@ -40,6 +40,7 @@ import { mutationObserverDirective } from '../mutation';
     AddPostPage,
     ChannelHistoryPage,
     mutationObserverDirective,
+    ReversePipe,
   ],
   imports: [
     BrowserModule,

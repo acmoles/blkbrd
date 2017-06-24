@@ -10,18 +10,18 @@
 <ion-content padding="true">
   <ion-grid fixed>
   <button ion-button block outline color="light" style="margin-bottom: 12px;" (click)="presentAddModal($event)">New Channel</button>
-  <ion-list id="bLKBRD-list1">
+  <ion-list mutation-observer (onMutation)="onMutation($event)" id="bLKBRD-list1">
 
-    <ion-item-sliding class="opacity-in" [ngClass]="{'first-load': firstLoad}" *ngFor="let channel of channels; let i = index">
-      <ion-item (click)="itemTapped(channel, i)">
-        {{channel.name}}
+    <ion-item-sliding class="opacity-in" [ngClass]="{'first-load': firstLoad}" *ngFor="let channel of channelsObserv | async | reverse">
+      <ion-item (click)="itemTapped(channel)">
+        <span class="item-name">{{channel.name}}</span>
         <span class="item-note" *ngFor="let message of channel.messages; let isLatest = first"><span *ngIf="isLatest">{{message.timestamp}}</span></span>
 
         <ion-icon name="md-lock" *ngIf="channel.password" class="item-icon-right"></ion-icon>
 
       </ion-item>
-      <ion-item-options side="right" (ionSwipe)="saveItem(item)">
-        <button ion-button expandable color="danger" (click)="saveItem(item)">
+      <ion-item-options side="right" (ionSwipe)="deleteChannel(channel)">
+        <button ion-button expandable color="danger" (click)="deleteChannel(channel)">
           <ion-icon name="md-remove"></ion-icon>
         </button>
       </ion-item-options>

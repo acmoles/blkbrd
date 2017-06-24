@@ -66,10 +66,10 @@ export class ChannelPage {
 
   ionViewDidEnter() {
     window.addEventListener('orientationchange', () => {
-        console.log('orientation changed');
-        this.haveSlides = false;
-        // this.haveSlides = true;
-        setTimeout(() => {this.haveSlides = true;}, 500);
+      console.log('orientation changed');
+      this.haveSlides = false;
+      // this.haveSlides = true;
+      setTimeout(() => { this.haveSlides = true; }, 500);
     });
   }
 
@@ -98,13 +98,22 @@ export class ChannelPage {
     });
     addPostModal.onDidDismiss(data => {
       if (data) {
-        console.log(data);
-        this.messages.unshift(data);
-        this.channelsProvider.addMessage(this.channelIndex, this.messages).then(data => {
-          console.log('successfully added new message');
-        }, error => {
-          console.log('ERROR creating new channel ' + error);
-        });
+        if (data.deleteLast) {
+          this.messages.shift();
+          this.channelsProvider.updateMessageList(this.channelIndex, this.messages).then(data => {
+            console.log('successfully deleted last message');
+          }, error => {
+            console.log('ERROR deleting last message ' + error);
+          });
+        } else {
+          console.log(data);
+          this.messages.unshift(data);
+          this.channelsProvider.updateMessageList(this.channelIndex, this.messages).then(data => {
+            console.log('successfully added new message');
+          }, error => {
+            console.log('ERROR adding new message ' + error);
+          });
+        }
       }
     });
     addPostModal.present();

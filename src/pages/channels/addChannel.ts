@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 
 
 @Component({

@@ -52,8 +52,13 @@ export class LoginPage {
       });
       validAlert.present();
     } else {
+      this.loading = this.loadingCtrl.create({
+        dismissOnPageChange: true,
+      });
+      this.loading.present();
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authData => {
+        this.loading.dismiss();
         this.navCtrl.setRoot(ChannelsPage);
       }, error => {
         this.loading.dismiss().then( () => {
@@ -69,12 +74,6 @@ export class LoginPage {
           alert.present();
         });
       });
-
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-
-      });
-      this.loading.present();
     }
 
 }

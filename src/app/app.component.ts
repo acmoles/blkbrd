@@ -4,11 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
+// import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AuthProvider } from '../auth';
+// import { AuthProvider } from '../auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +24,7 @@ export class blkbrd {
         this.rootPage = ChannelsPage;
         authObserver.unsubscribe();
       } else {
-        this.rootPage = SignupPage;
+        this.rootPage = LoginPage;
         authObserver.unsubscribe();
       }
     });

@@ -6,6 +6,7 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content padding="true" class="has-header">
 <ion-slides *ngIf="haveSlides" direction="vertical" (ionSlideDidChange)="slideChanged()">
 
   <ion-slide *ngFor="let message of messages" class="fadeIn">
@@ -17,6 +18,7 @@
   </ion-slide>
 
 </ion-slides>
+</ion-content>
 
 <!-- <ion-list>
   <ion-item *ngFor="let message of messsages | async">

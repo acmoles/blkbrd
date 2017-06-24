@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Insomnia } from '@ionic-native/insomnia';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
 import { blkbrd } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -65,6 +66,7 @@ import { mutationObserverDirective } from '../mutation';
     StatusBar,
     SplashScreen,
     Insomnia,
+    AndroidFullScreen,
     AuthProvider,
     ChannelsProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

@@ -15,6 +15,10 @@
 // for the .ios, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+body, html {
+  background-color: black;
+}
+
 .ion-page {
   background: #000;
 }
@@ -96,6 +100,7 @@
 
 [dir="ltr"] .label-ios {
     margin: 0;
+    margin-top: 5px;
 }
 
 .item-icon-right {
@@ -112,7 +117,7 @@
   -moz-align-items: center;
   align-items: center;
   position: absolute;
-  top: -3px;
+  top: -2px;
   height: 100%;
   font-size: 24px;
   color: color($colors, dark);
@@ -154,4 +159,15 @@ ion-spinner {
 
 .ion-md-remove {
   padding-bottom: 0 !important;
+}
+
+ion-slides {
+  position: relative;
+  bottom: 30px;
+}
+
+.bar-button-clear-ios-default:hover:not(.disable-hover),
+.bar-button-default-ios:hover:not(.disable-hover),
+.bar-button-default.bar-button-ios-default:hover:not(.disable-hover) {
+  color: color($colors, light)
 }

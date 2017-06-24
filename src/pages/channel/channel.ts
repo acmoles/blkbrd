@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController, NavController, ModalController, NavParams, Slides } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 // import { ChannelHistoryPage } from './history';
 import { AddPostPage } from './addPost';
 
@@ -28,13 +29,12 @@ export class ChannelPage {
   public channelIndex: number;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, private statusBar: StatusBar,
-    public navParams: NavParams, public viewCtrl: ViewController, public channelsProvider: ChannelsProvider
+    public navParams: NavParams, public viewCtrl: ViewController, public channelsProvider: ChannelsProvider,
+    public androidFullScreen: AndroidFullScreen
   ) {
   }
 
   ionViewDidLoad() {
-    this.statusBar.hide();
-
     this.currentUser = this.navParams.get('user');
     this.currentChannel = this.navParams.get('name');
     this.channelIndex = this.navParams.get('index');
@@ -65,6 +65,12 @@ export class ChannelPage {
   }
 
   ionViewDidEnter() {
+    setTimeout(() => {
+      this.statusBar.hide();
+      this.androidFullScreen.isImmersiveModeSupported()
+        .then(() => this.androidFullScreen.immersiveMode())
+        .catch((error: any) => console.log(error));
+    }, 1000)
     window.addEventListener('orientationchange', () => {
       console.log('orientation changed');
       this.haveSlides = false;
@@ -76,6 +82,7 @@ export class ChannelPage {
   ionViewWillLeave() {
     this.channel$.unsubscribe();
     this.statusBar.show();
+    this.androidFullScreen.showSystemUI();
   }
 
   slideChanged() {

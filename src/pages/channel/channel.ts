@@ -70,7 +70,7 @@ export class ChannelPage {
       this.androidFullScreen.isImmersiveModeSupported()
         .then(() => this.androidFullScreen.immersiveMode())
         .catch((error: any) => console.log(error));
-    }, 1000)
+    }, 10000)
     window.addEventListener('orientationchange', () => {
       console.log('orientation changed');
       this.haveSlides = false;

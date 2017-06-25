@@ -7,6 +7,7 @@ import { Insomnia } from '@ionic-native/insomnia';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
 import { blkbrd } from './app.component';
+import { AppLoading } from './app.loading';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
@@ -14,7 +15,7 @@ import { AppSettingsPage } from '../pages/channels/settings';
 import { AddChannelPage } from '../pages/channels/addChannel';
 import { ChannelPage } from '../pages/channel/channel';
 import { AddPostPage } from '../pages/channel/addPost';
-import { ChannelHistoryPage } from '../pages/channel/history';
+// import { ChannelHistoryPage } from '../pages/channel/history';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -39,9 +40,9 @@ import { mutationObserverDirective } from '../mutation';
     ChannelPage,
     AddChannelPage,
     AddPostPage,
-    ChannelHistoryPage,
     mutationObserverDirective,
     ReversePipe,
+    AppLoading,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +54,7 @@ import { mutationObserverDirective } from '../mutation';
   bootstrap: [IonicApp],
   entryComponents: [
     blkbrd,
+    AppLoading,
     LoginPage,
     SignupPage,
     ChannelsPage,
@@ -60,7 +62,6 @@ import { mutationObserverDirective } from '../mutation';
     ChannelPage,
     AddChannelPage,
     AddPostPage,
-    ChannelHistoryPage,
   ],
   providers: [
     StatusBar,

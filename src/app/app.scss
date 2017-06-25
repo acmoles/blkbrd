@@ -19,6 +19,21 @@ body, html {
   background-color: black;
 }
 
+@keyframes opacityInApp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.app-root {
+opacity: 0;
+animation: opacityInApp 2s forwards;
+-webkit-animation: opacityInApp 2s forwards;
+}
+
 .ion-page {
   background: #000;
 }

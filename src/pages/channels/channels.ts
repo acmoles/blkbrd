@@ -16,7 +16,7 @@ import { Insomnia } from '@ionic-native/insomnia';
 import "rxjs/add/operator/map";
 import 'rxjs/add/operator/finally';
 // import { Observable } from 'rxjs';
-// import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'channels-page',
@@ -25,7 +25,9 @@ import 'rxjs/add/operator/finally';
 export class ChannelsPage {
 
   public channelsObserv: FirebaseListObservable<any[]>;
-  public channels: any[];
+  public channelsSub: Subscription;
+  public channels: any[] = [];
+  public channelCheck: any;
   public username: string;
   public loading: Loading;
 
@@ -45,6 +47,19 @@ export class ChannelsPage {
     this.loading = this.loadingCtrl.create();
     this.loading.present();
     this.channelsObserv = this.channelsProvider.getChannels();
+    this.channelsSub = this.channelsObserv.subscribe((channels) => {
+      this.channels = channels;
+    })
+    // interval check of length of this.channels
+    this.channelCheck = setInterval(() => {
+      if (this.channels.length > 0 && this.loading) {
+        this.loading.dismissAll();
+        this.loading = null;
+        clearTimeout(this.channelCheck);
+        console.log('loaded channels');
+      }
+    }, 2000);
+
 
     // initialize insomnia - default to on
     if (this.screenOn) {
@@ -58,12 +73,6 @@ export class ChannelsPage {
         () => console.log('insomnia turn off error')
       );
     }
-  }
-
-  onMutation() {
-    setTimeout(() => {
-      this.loading.dismissAll();
-    }, 2000)
   }
 
   ionViewWillLeave() {
@@ -144,7 +153,12 @@ export class ChannelsPage {
             role: 'cancel',
             handler: (data) => {
               if (data.password === channel.password) {
-                this.navCtrl.push(ChannelPage, params);
+                let loader = this.loadingCtrl.create();
+                loader.present();
+                setTimeout(() => {
+                  loader.dismiss();
+                  this.navCtrl.push(ChannelPage, params);
+                }, 2000)
               } else {
                 return false;
               }

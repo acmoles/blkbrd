@@ -22,11 +22,16 @@ export class ChannelPage {
   public overlayTimeout: any;
   public initialTimout: any;
 
+  public uiTimeout: any;
+
   public channel$: Rx.Subscription;
   public messages: any[];
   public currentUser: string;
   public currentChannel: string;
   public channelIndex: number;
+
+  public fontscale: number = 0.5;
+  public retryScale: any;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, private statusBar: StatusBar,
     public navParams: NavParams, public viewCtrl: ViewController, public channelsProvider: ChannelsProvider,
@@ -53,6 +58,7 @@ export class ChannelPage {
     }, 8000);
 
     this.slides.ionSlideDidChange.subscribe(() => {
+      console.log('slidedigchange')
       clearTimeout(this.overlayTimeout);
       clearTimeout(this.initialTimout);
       this.overlayTimeout = setTimeout(() => {
@@ -62,31 +68,48 @@ export class ChannelPage {
       }, 10000);
     })
 
+    this.scaleFont(this.fontscale);
   }
 
   ionViewDidEnter() {
-    setTimeout(() => {
+    this.uiTimeout = setTimeout(() => {
       this.statusBar.hide();
       this.androidFullScreen.isImmersiveModeSupported()
         .then(() => this.androidFullScreen.immersiveMode())
         .catch((error: any) => console.log(error));
     }, 10000)
+
     window.addEventListener('orientationchange', () => {
       console.log('orientation changed');
       this.haveSlides = false;
       // this.haveSlides = true;
-      setTimeout(() => { this.haveSlides = true; }, 500);
+      setTimeout(() => {
+      this.haveSlides = true;
+      this.scaleFont(this.fontscale);
+      }, 500);
+    });
+
+    window.addEventListener('resize', () => {
+      this.scaleFont(this.fontscale);
     });
   }
 
+  scaleFont(f) {
+    let container = document.getElementById('fontScaler');
+    if (container !== null) {
+      let containerWidth = container.clientWidth,
+        percentSize = containerWidth * f;
+      container.style.fontSize = percentSize + '%';
+    } else {
+      console.log('missing...')
+    }
+  }
+
   ionViewWillLeave() {
+    clearTimeout(this.uiTimeout);
     this.channel$.unsubscribe();
     this.statusBar.show();
     this.androidFullScreen.showSystemUI();
-  }
-
-  slideChanged() {
-    console.log('slides did change');
   }
 
   removeOverlay() {

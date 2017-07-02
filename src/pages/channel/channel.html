@@ -6,12 +6,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true" class="has-header">
-<ion-slides *ngIf="haveSlides" direction="vertical" (ionSlideDidChange)="slideChanged()">
+<ion-content padding="true" class="has-header" id="fontScaler">
+<ion-slides *ngIf="haveSlides" direction="vertical">
 
   <ion-slide *ngFor="let message of messages" class="fadeIn">
     <div class="channel-wrap">
-      <p class="message">{{message.message}}<br>
+      <p class="message">
+        <span>{{message.message}}</span><br>
         <span class="author"><strong>{{message.name}}</strong><span>{{message.timestamp}}</span></span>
       </p>
     </div>

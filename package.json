@@ -28,6 +28,7 @@
         "@ionic/storage": "^2.0.1",
         "angularfire2": "^4.0.0-rc.1",
         "cordova-android": "^6.2.3",
+        "cordova-browser": "^4.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-fullscreen": "^1.1.0",
@@ -73,6 +74,7 @@
         },
         "platforms": [
             "android",
+            "browser",
             "ios",
             "windows"
         ]

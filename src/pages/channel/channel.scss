@@ -6,12 +6,17 @@ channel-page {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  line-height: 90%;
+}
+
+.swiper-slide {
+  font-size: inherit;
 }
 
 .message {
   text-align: left;
   color:#FFFFFF;
-  font-size:18px;
+  // font-size:18px;
   display:inline-block
 }
 
@@ -19,7 +24,7 @@ channel-page {
   display: inline-block;
   margin-top: 5px;
   color:#BFBFBF;
-  font-size:13px;
+  font-size: 50%;
    span {
      margin-left: 5px;
    }

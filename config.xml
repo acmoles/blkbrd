@@ -78,6 +78,21 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
+    <platform name="windows">
+        <icon src="resources/windows/icon/storelogo.png" target="StoreLogo" />
+        <icon src="resources/windows/icon/Square30x30Logo.png" target="Square30x30Logo" />
+        <icon src="resources/windows/icon/Square44x44Logo.png" target="Square44x44Logo" />
+        <icon src="resources/windows/icon/Square70x70Logo.png" target="Square70x70Logo" />
+        <icon src="resources/windows/icon/Square71x71Logo.png" target="Square71x71Logo" />
+        <icon src="resources/windows/icon/Square150x150Logo.png" target="Square150x150Logo" />
+        <icon src="resources/windows/icon/Square310x310Logo.png" target="Square310x310Logo" />
+        <icon src="resources/windows/icon/Wide310x150Logo.png" target="Wide310x150Logo" />
+    </platform>
+    <platform name="wp8">
+        <icon src="resources/wp8/ApplicationIcon.png" width="99" height="99" />
+        <!-- tile image -->
+        <icon src="resources/wp8/Background.png" width="159" height="159" />
+    </platform>
     <engine name="ios" />
     <engine name="android" spec="^6.2.3" />
     <engine name="windows" spec="^5.0.0" />

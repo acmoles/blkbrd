@@ -58,7 +58,6 @@ export class ChannelPage {
     }, 8000);
 
     this.slides.ionSlideDidChange.subscribe(() => {
-      console.log('slidedigchange')
       clearTimeout(this.overlayTimeout);
       clearTimeout(this.initialTimout);
       this.overlayTimeout = setTimeout(() => {

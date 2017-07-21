@@ -124,6 +124,9 @@ export class ChannelPage {
 
   presentNewPostModal() {
     let addPostModal = this.modalCtrl.create(AddPostPage, { userName: this.currentUser }, {
+      enableBackdropDismiss: true,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
     });
     addPostModal.onDidDismiss(data => {
       if (data) {

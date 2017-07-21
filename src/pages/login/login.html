@@ -1,26 +1,62 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>LOGIN</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding="true" class="has-header">
+<ion-content padding="true" class="has-header app-load-fade">
   <ion-grid fixed>
-  <form id="lOGIN" [formGroup]="loginForm" (submit)="login()" novalidate>
-    <ion-list>
-      <ion-input class="item item-input" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" #email formControlName="email" type="email" placeholder="email"></ion-input>
-      <ion-input class="item item-input" #password formControlName="password" type="password" placeholder="password"></ion-input>
-    <button ion-button block outline color="light" style="margin-top: 12px;" type="submit" [disabled]="false">Login</button>
-    <div (click)="reset($event)">
-      <p>Forgotten your password? Click
-        <strong>Here</strong>
-      </p>
+    <div class="logo-container">
+      <div id="logo">
+        <div class="scene scene-login">
+          <div class="shape cuboid-1 cub-1">
+            <div class="face bk offset-bk">
+              <div class="photon-shader"></div>
+            </div>
+            <div class="face bk actual-bk">
+              <div class="photon-shader"></div>
+            </div>
+            <div class="face rt">
+              <div class="photon-shader">
+                <ul class="table">
+                  <li></li>
+                  <li>
+                  </li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li>
+                  </li>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+            <div class="face tp offset-tp">
+              <div class="photon-shader"></div>
+            </div>
+            <div class="face tp actual-tp">
+              <div class="photon-shader"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </ion-list>
-  </form>
-  <button ion-button block outline color="secondary" (click)="gotoSignUp($event)">Create New Account</button>
-</ion-grid>
+
+    <form id="lOGIN" [formGroup]="loginForm" (submit)="login()" novalidate>
+      <ion-list>
+        <ion-input class="item item-input" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" #email formControlName="email" type="email" placeholder="email"></ion-input>
+        <ion-input class="item item-input" #password formControlName="password" type="password" placeholder="password"></ion-input>
+        <button ion-button block outline color="light" style="margin-top: 12px;" type="submit" [disabled]="false">Login</button>
+        <div (click)="reset($event)">
+          <p>Forgotten your password? Click
+            <strong>Here</strong>
+          </p>
+        </div>
+      </ion-list>
+    </form>
+    <button ion-button block outline color="secondary" (click)="gotoSignUp($event)">Create New Account</button>
+  </ion-grid>
 </ion-content>

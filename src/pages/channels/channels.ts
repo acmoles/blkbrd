@@ -76,7 +76,7 @@ export class ChannelsPage {
   }
 
   ionViewWillLeave() {
-    this.firstLoad = false;
+    // this.firstLoad = false;
   }
 
   logout() {
@@ -86,7 +86,13 @@ export class ChannelsPage {
   }
 
   presentSettingsModal() {
-    let settingsModal = this.modalCtrl.create(AppSettingsPage, { logout: this.logout.bind(this), screenOn: this.screenOn }, {
+    let settingsModal = this.modalCtrl.create(AppSettingsPage, {
+      logout: this.logout.bind(this),
+      screenOn: this.screenOn
+    }, {
+      enableBackdropDismiss: true,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
     });
     settingsModal.onDidDismiss(data => {
       if (data) {
@@ -109,6 +115,9 @@ export class ChannelsPage {
 
   presentAddModal() {
     let addModal = this.modalCtrl.create(AddChannelPage, { data: null }, {
+      enableBackdropDismiss: true,
+      enterAnimation: 'modal-scale-up-enter',
+      leaveAnimation: 'modal-scale-up-leave'
     });
     addModal.onDidDismiss(data => {
       if (data) {

@@ -1,5 +1,6 @@
 <ion-header>
   <ion-navbar class="channelFadeIn" [ngClass]="{channelVisible: isVisible, channelInvisible: isInvisible}">
+    <ion-title>{{currentChannel}}</ion-title>
     <button ion-button icon-only menuToggle right show color="light" style="display:block !important;" (click)="presentNewPostModal($event)">
       <ion-icon name="md-add"></ion-icon>
     </button>

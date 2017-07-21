@@ -28,19 +28,21 @@ body, html {
   }
 }
 
-.app-root {
-opacity: 0;
-animation: opacityInApp 2s forwards;
--webkit-animation: opacityInApp 2s forwards;
-}
-
 .ion-page {
   background: #000;
+}
+
+.has-header-modal {
+  margin-top: 44px;
 }
 
 .toolbar-background-ios {
   background-color: #000;
   border-color: #000;
+}
+
+.scroll-content {
+  -ms-overflow-style: none;
 }
 
 .bar-button-default-ios, .bar-button-clear-ios-default, .bar-button-ios-default {
@@ -60,8 +62,14 @@ animation: opacityInApp 2s forwards;
   background-color: #000;
 }
 
+.app-load-fade {
+  opacity: 0;
+  animation: opacityInApp 2s forwards;
+  -webkit-animation: opacityInApp 2s forwards;
+}
+
 .button-ios {
-  border-radius: 6px;
+  border-radius: 0;
 }
 
 .item {
@@ -73,6 +81,10 @@ animation: opacityInApp 2s forwards;
   padding: 6px 16px 6px 16px;
   border-bottom: solid 1px #ECF0F1;
   font-size: 16px;
+}
+
+.item-block:active {
+  background-color: #ECF0F1;
 }
 
 .item-input {
@@ -185,4 +197,153 @@ ion-slides {
 .bar-button-default-ios:hover:not(.disable-hover),
 .bar-button-default.bar-button-ios-default:hover:not(.disable-hover) {
   color: color($colors, light)
+}
+
+
+
+////////// 3D logo
+
+.logo-container {
+  position: relative;
+  height: 180px;
+}
+
+#logo {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-size: 100%;
+}
+
+.cr,
+.face,
+.face-wrapper,
+.scene,
+.shape {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.scene {
+  width: 80em;
+  height: 80em;
+  top: 45%;
+  left: 50%;
+  margin: -40em 0 0 -40em;
+  transform: rotateX(-35deg) rotateY(45deg);
+}
+
+.shape {
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-origin: 50%;
+}
+
+.face,
+.face-wrapper {
+  overflow: hidden;
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  /* hidden by default, prevent blinking and other weird rendering glitchs */
+}
+
+.face {
+  background-size: 100% 100%!important;
+  background-position: center;
+}
+
+.face-wrapper .face {
+  left: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.photon-shader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cub-1 {
+  transform: translate3D(0em, 0em, 0em) rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
+  opacity: 1;
+  width: 5em;
+  height: 5em;
+  margin: -2.5em 0 0 -2.5em;
+}
+
+.cub-1 .tp {
+  width: 5em;
+  height: 5em;
+  transform: rotateX(90deg) translateY(-50%);
+  // box-shadow: -0.5px 0 0 0.2px rgba(255, 255, 255, 1);
+}
+
+.tp.offset-tp {
+  transform: rotateX(90deg) translateY(-50%)  translateZ(-0.1em);
+}
+
+.cub-1 .face {
+  background-color: #FFFFFF;
+}
+
+.cub-1 .bk {
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-2.5em) rotateY(180deg);
+  width: 5em;
+  margin-left: 0;
+  // box-shadow: 1px -1px 0 0.5px rgba(255, 255, 255, 1);
+}
+
+.bk.offset-bk {
+  transform: translateZ(-2.4em) rotateY(180deg);
+}
+
+.cub-1 .rt {
+  width: 5em;
+  height: 5em;
+  width: 5em;
+  background-color: transparent;
+  transform: rotateX(90deg) rotateY(-90deg) translateY(-50%) translateX(-100%);
+
+  .table {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    li {
+      display: block;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: calc(100% / 7);
+      clear: both;
+      box-shadow: -0.5px -0.5px 0 0.2px rgba(255, 255, 255, 1);
+    }
+    li:nth-child(odd) {
+      background-color: #FFFFFF;
+    }
+    li:nth-child(even) {
+      background-color: #FFFFFF;
+      width: calc(100% / 7);
+      float: right;
+    }
+    li:nth-child(6) {
+      width: calc(100% / 7 * 4);
+    }
+  }
+}
+
+.cub-1 .side {
+  width: 0.025em;
 }

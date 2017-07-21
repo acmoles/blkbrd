@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Config } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Insomnia } from '@ionic-native/insomnia';
@@ -29,6 +29,9 @@ import { ionicConfig } from '../ionConfig';
 import { firebaseConfig } from '../firebaseConfig';
 
 import { mutationObserverDirective } from '../mutation';
+
+import { ModalScaleUpLeaveTransition } from '../scale-up-leave.transition';
+import { ModalScaleUpEnterTransition } from '../scale-up-enter.transition';
 
 @NgModule({
   declarations: [
@@ -73,4 +76,13 @@ import { mutationObserverDirective } from '../mutation';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public config: Config) {
+        this.setCustomTransitions();
+    }
+
+    private setCustomTransitions() {
+        this.config.setTransition('modal-scale-up-leave', ModalScaleUpLeaveTransition);
+        this.config.setTransition('modal-scale-up-enter', ModalScaleUpEnterTransition);
+    }
+}

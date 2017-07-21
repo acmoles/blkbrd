@@ -1,13 +1,13 @@
-<ion-header>
+<ion-header class="app-load-fade">
   <ion-navbar hideBackButton="true">
-    <ion-title>BLKBRD</ion-title>
+    <ion-title>Channels</ion-title>
     <button ion-button icon-only menuToggle right show color="light" style="display:block !important;" (click)="presentSettingsModal($event)">
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true" class="has-header">
+<ion-content padding="true" class="has-header app-load-fade">
   <ion-grid fixed>
   <button ion-button block outline color="light" style="margin-bottom: 12px;" (click)="presentAddModal($event)">New Channel</button>
   <ion-list id="bLKBRD-list1">

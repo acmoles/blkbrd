@@ -1,20 +1,22 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button ion-button icon-only color="light"(click)="dismiss()"><ion-icon name="md-arrow-back"></ion-icon></button>
+      <button ion-button icon-only color="light" (click)="dismiss()"><ion-icon name="md-arrow-back"></ion-icon></button>
     </ion-buttons>
     <ion-title>Add Post</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true">
-  <form id="NEWPOST" [formGroup]="addPost" (submit)="addNewPost()" novalidate>
+<ion-content padding="true" class="has-header-modal">
+  <ion-grid fixed>
+    <form id="NEWPOST" [formGroup]="addPost" (submit)="addNewPost()" novalidate>
+      <ion-list>
+        <ion-textarea class="item item-input post" #message formControlName="message" type="text" placeholder="message"></ion-textarea>
+        <button ion-button block outline color="light" type="submit" style="margin-top: 12px;">Submit</button>
+      </ion-list>
+    </form>
     <ion-list>
-      <ion-textarea class="item item-input post" #message formControlName="message" type="text" placeholder="message"></ion-textarea>
-    <button ion-button block outline color="light" type="submit" style="margin-top: 12px;">Submit</button>
-  </ion-list>
-  </form>
-   <ion-list>
-     <button ion-button block outline color="danger" style="margin-top: 44px;" (click)="deleteLast()">Delete Last Post</button>
-   </ion-list>
+      <button ion-button block outline color="danger" style="margin-top: 44px;" (click)="deleteLast()">Delete Last Post</button>
+    </ion-list>
+  </ion-grid>
 </ion-content>

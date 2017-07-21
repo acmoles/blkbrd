@@ -2,24 +2,28 @@ channels-page {
     @keyframes opacityIn {
     0% {
       opacity: 0;
-      transform: translateY(20px);
+      transform: rotateX(-60deg) translateY(20px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: rotateX(0) translateY(0);
     }
+  }
+
+  #bLKBRD-list1 {
+    perspective: 1400px;
   }
 
   .opacity-in {
     opacity: 0;
-    animation: opacityIn 1s forwards;
-    -webkit-animation: opacityIn 1s forwards;
+    animation: opacityIn 700ms forwards;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955)
   }
 
   .first-load {
-    @for $i from 1 through 24 {
+    @for $i from 2 through 24 {
             &:nth-child(#{$i}) {
-             animation-delay: (0.3s * $i);
+             animation-delay: (100ms * $i);
             }
         }
   }

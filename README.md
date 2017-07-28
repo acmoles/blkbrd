@@ -11,4 +11,4 @@ Put your old mobile device to work as a message window. Created by [Anthony Mole
 
 ## License
 
-[MIT License](LICENSE.md). © Anthony Moles Lyall 2016
+[MIT License](LICENSE.md). © 2017 Anthony Moles Lyall

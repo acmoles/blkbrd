@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true" class="has-header" id="fontScaler">
+<ion-content padding="true" class="has-header" [ngClass]="{colorChanging: colorChanging}" id="fontScaler">
 <ion-slides *ngIf="haveSlides" direction="vertical">
 
   <ion-slide *ngFor="let message of messages" class="fadeIn">

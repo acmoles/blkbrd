@@ -11,7 +11,7 @@
   <ion-grid fixed>
     <div class="logo-container">
       <div id="logo">
-        <div class="scene scene-login">
+        <div id="scene" class="scene scene-login">
           <div class="shape cuboid-1 cub-1">
             <div class="face bk offset-bk">
               <div class="photon-shader"></div>
@@ -58,5 +58,6 @@
       </ion-list>
     </form>
     <button ion-button block outline color="secondary" (click)="gotoSignUp($event)">Create New Account</button>
+    <button ion-button block outline color="primary" (click)="gotoAbout($event)" style="margin-top: 8px;">About</button>
   </ion-grid>
 </ion-content>

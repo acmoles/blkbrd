@@ -10,14 +10,22 @@
 <ion-content padding="true" class="has-header-modal">
     <ion-grid fixed>
     <ion-list>
-      <button ion-button block outline color="danger" style="margin-top: 12px; margin-bottom: 44px;" (click)="logoutParent()">Logout</button>
-      <!-- <ion-input class="item item-input" placeholder="name"></ion-input>
-      <button ion-button block outline color="light" style="margin-top: 12px; margin-bottom: 44px;">Update</button> -->
+      <p>Update display name</p>
+      <ion-input class="item item-input" placeholder="name" [(ngModel)]="name"></ion-input>
+      <button ion-button block outline color="light" style="margin-top: 12px; margin-bottom: 44px;">Update</button>
       <ion-item>
         <ion-label>Keep Screen On</ion-label>
         <ion-toggle [(ngModel)]="screenOn"></ion-toggle>
-        <!-- [(ngModel)]="screenOn" -->
       </ion-item>
+      <ion-item>
+        <ion-label>Colour Changing</ion-label>
+        <ion-toggle [(ngModel)]="colorChanging"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Word Clock</ion-label>
+        <ion-toggle [(ngModel)]="wordClock"></ion-toggle>
+      </ion-item>
+      <button ion-button block outline color="danger" style="margin-top: 44px; margin-bottom: 44px;" (click)="logoutParent()">Logout</button>
     </ion-list>
   </ion-grid>
 </ion-content>

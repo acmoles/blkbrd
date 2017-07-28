@@ -4,9 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
-// import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
 // import { AppLoading } from './app.loading';
+
+// import { ClockPage } from '../pages/clock/clock';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 // import { AuthProvider } from '../auth';

@@ -30,8 +30,12 @@ signupUser(newEmail: string, newPassword: string, newName: string): firebase.Pro
 }
 
 getName() {
-  console.log('getting username');
   return this.afAuth.auth.currentUser.displayName;
+}
+
+updateName(name: string) {
+  console.log('updating username to ' + name);
+  return this.afAuth.auth.currentUser.updateProfile({displayName: name, photoURL: null})
 }
 
 isLoggedin() {

@@ -19,6 +19,16 @@ body, html {
   background-color: black;
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  width: 0;
+}
+
 @keyframes opacityInApp {
   0% {
     opacity: 0;
@@ -70,6 +80,13 @@ body, html {
 
 .button-ios {
   border-radius: 0;
+}
+
+ion-input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 .item {
@@ -197,6 +214,10 @@ ion-slides {
 .bar-button-default-ios:hover:not(.disable-hover),
 .bar-button-default.bar-button-ios-default:hover:not(.disable-hover) {
   color: color($colors, light)
+}
+
+.toolbar-background-ios {
+  background-color: transparent;
 }
 
 

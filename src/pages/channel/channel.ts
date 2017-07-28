@@ -33,6 +33,8 @@ export class ChannelPage {
   public fontscale: number = 0.5;
   public retryScale: any;
 
+  public colorChanging: boolean;
+
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, private statusBar: StatusBar,
     public navParams: NavParams, public viewCtrl: ViewController, public channelsProvider: ChannelsProvider,
     public androidFullScreen: AndroidFullScreen
@@ -43,6 +45,7 @@ export class ChannelPage {
     this.currentUser = this.navParams.get('user');
     this.currentChannel = this.navParams.get('name');
     this.channelIndex = this.navParams.get('index');
+    this.colorChanging = this.navParams.get('colorChanging');
     console.log('current user: ' + this.currentUser + ', current channel: ' + this.currentChannel + ', current channel index: ' + this.channelIndex);
 
     this.channel$ = this.channelsProvider.getChannel(this.channelIndex).subscribe(channel => {

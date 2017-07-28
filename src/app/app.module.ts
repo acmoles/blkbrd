@@ -9,12 +9,14 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { blkbrd } from './app.component';
 import { AppLoading } from './app.loading';
 import { LoginPage } from '../pages/login/login';
+import { AboutPage } from '../pages/login/about';
 import { SignupPage } from '../pages/signup/signup';
 import { ChannelsPage } from '../pages/channels/channels';
 import { AppSettingsPage } from '../pages/channels/settings';
 import { AddChannelPage } from '../pages/channels/addChannel';
 import { ChannelPage } from '../pages/channel/channel';
 import { AddPostPage } from '../pages/channel/addPost';
+import { ClockPage } from '../pages/clock/clock';
 // import { ChannelHistoryPage } from '../pages/channel/history';
 
 import { AngularFireModule } from 'angularfire2';
@@ -38,6 +40,7 @@ import { ModalScaleUpEnterTransition } from '../scale-up-enter.transition';
     blkbrd,
     LoginPage,
     SignupPage,
+    AboutPage,
     ChannelsPage,
     AppSettingsPage,
     ChannelPage,
@@ -46,6 +49,7 @@ import { ModalScaleUpEnterTransition } from '../scale-up-enter.transition';
     mutationObserverDirective,
     ReversePipe,
     AppLoading,
+    ClockPage
   ],
   imports: [
     BrowserModule,
@@ -59,12 +63,14 @@ import { ModalScaleUpEnterTransition } from '../scale-up-enter.transition';
     blkbrd,
     AppLoading,
     LoginPage,
+    AboutPage,
     SignupPage,
     ChannelsPage,
     AppSettingsPage,
     ChannelPage,
     AddChannelPage,
     AddPostPage,
+    ClockPage
   ],
   providers: [
     StatusBar,

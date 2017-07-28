@@ -4,6 +4,7 @@ import { AppSettingsPage } from './settings';
 import { AddChannelPage } from './addChannel';
 import { ChannelPage } from '../channel/channel';
 import { LoginPage } from '../login/login';
+import { ClockPage } from '../clock/clock';
 
 import { mutationObserverDirective } from '../../mutation';
 
@@ -33,6 +34,8 @@ export class ChannelsPage {
 
   public firstLoad: boolean = true;
   public screenOn: boolean = true;
+  public colorChanging: boolean = false;
+  public wordClock: boolean = false;
 
   @ContentChild(mutationObserverDirective) mutation;
 
@@ -58,7 +61,7 @@ export class ChannelsPage {
         clearTimeout(this.channelCheck);
         console.log('loaded channels');
       }
-    }, 2000);
+    }, 1000);
 
 
     // initialize insomnia - default to on
@@ -80,22 +83,29 @@ export class ChannelsPage {
   }
 
   logout() {
-    // this.channelsSub.unsubscribe();
+    this.channelsSub.unsubscribe();
     this.navCtrl.setRoot(LoginPage);
-    // this.channels = null;
+    this.channels = null;
   }
 
   presentSettingsModal() {
     let settingsModal = this.modalCtrl.create(AppSettingsPage, {
+
       logout: this.logout.bind(this),
-      screenOn: this.screenOn
+      name: this.username,
+      screenOn: this.screenOn,
+      colorChanging: this.colorChanging,
+      wordClock: this.wordClock
+
     }, {
-      enableBackdropDismiss: true,
-      enterAnimation: 'modal-scale-up-enter',
-      leaveAnimation: 'modal-scale-up-leave'
-    });
+        enableBackdropDismiss: true,
+        enterAnimation: 'modal-scale-up-enter',
+        leaveAnimation: 'modal-scale-up-leave'
+      });
     settingsModal.onDidDismiss(data => {
+
       if (data) {
+
         this.screenOn = data.screenOn;
         if (this.screenOn) {
           this.insomnia.keepAwake().then(
@@ -108,7 +118,17 @@ export class ChannelsPage {
             () => console.log('insomnia turn off error')
           );
         }
+        console.log('returned username: ' + data.name)
+        this.authData.updateName(data.name).then(
+          () => this.username = data.name,
+          () => console.log('user rename error')
+        );
+
+        this.colorChanging = data.colorChanging;
+        this.wordClock = data.wordClock;
+
       }
+
     });
     settingsModal.present();
   }
@@ -133,52 +153,54 @@ export class ChannelsPage {
   }
 
   itemTapped(channel) {
-    console.log('passing channel index: ' + channel.$key)
-    let params = {
-      index: channel.$key,
-      name: channel.name,
-      user: this.username
-    }
-    if (channel.password) {
-      let passwordAlert = this.alertCtrl.create({
-        message: "Please enter the channel password",
-        inputs: [
-          {
-            name: 'password',
-            placeholder: 'Password',
-            type: 'password'
-          }
-        ],
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            handler: data => {
-              console.log('Cancel clicked');
+      console.log('passing channel index: ' + channel.$key)
+      let params = {
+        index: channel.$key,
+        name: channel.name,
+        user: this.username,
+        colorChanging: this.colorChanging
+      }
+      if (channel.password) {
+        let passwordAlert = this.alertCtrl.create({
+          message: "Please enter the channel password",
+          inputs: [
+            {
+              name: 'password',
+              placeholder: 'Password',
+              type: 'password'
             }
-          },
-          {
-            text: "Ok",
-            role: 'cancel',
-            handler: (data) => {
-              if (data.password === channel.password) {
-                let loader = this.loadingCtrl.create();
-                loader.present();
-                setTimeout(() => {
-                  loader.dismiss();
-                  this.navCtrl.push(ChannelPage, params);
-                }, 2000)
-              } else {
-                return false;
+          ],
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: data => {
+                console.log('Cancel clicked');
               }
-            }
-          },
-        ]
-      });
-      passwordAlert.present();
-    } else {
-      this.navCtrl.push(ChannelPage, params);
-    }
+            },
+            {
+              text: "Ok",
+              role: 'cancel',
+              handler: (data) => {
+                if (data.password === channel.password) {
+                  let loader = this.loadingCtrl.create();
+                  loader.present();
+                  setTimeout(() => {
+                    loader.dismiss();
+                    this.navCtrl.push(ChannelPage, params);
+                  }, 2000)
+                } else {
+                  passwordAlert.data.message = "Wrong password"
+                  return false;
+                }
+              }
+            },
+          ]
+        });
+        passwordAlert.present();
+      } else {
+        this.navCtrl.push(ChannelPage, params);
+      }
   }
 
   deleteChannel(channel) {
@@ -205,7 +227,7 @@ export class ChannelsPage {
             role: 'cancel',
             handler: (data) => {
               if (data.password === channel.password) {
-                  this.removeChannelCallback(channel);
+                this.removeChannelCallback(channel);
               } else {
                 return false;
               }
@@ -224,8 +246,16 @@ export class ChannelsPage {
     this.channelsProvider.removeChannel(key).then(data => {
       console.log('successfully removed channel: ' + key);
     }, error => {
-      console.log('ERROR creating new channel ' + error);
+      console.log('ERROR deleting channel ' + error);
     });
+  }
+
+  gotoWordClock(event) {
+    let params = {
+      user: this.username,
+      colorChanging: this.colorChanging
+    }
+    this.navCtrl.push(ClockPage, params);
   }
 
 }

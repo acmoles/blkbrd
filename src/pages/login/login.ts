@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, ModalController } from 'ionic-angular';
 import { ChannelsPage } from '../channels/channels';
 import { SignupPage } from '../signup/signup';
+import { AboutPage } from './about';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../email';
@@ -19,7 +20,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public authData: AuthProvider,
   public formBuilder: FormBuilder, public alertCtrl: AlertController,
-  public loadingCtrl: LoadingController) {
+  public loadingCtrl: LoadingController, public modalCtrl: ModalController) {
 
     this.loginForm = formBuilder.group({
     email: ['', Validators.compose([Validators.required,
@@ -29,10 +30,14 @@ export class LoginPage {
 
   }
 
-  ionViewDidLoad() {
-    if (this.authData.isLoggedin()) {
+  ionViewDidEnter() {
       this.authData.logoutUser();
-    }
+
+      setTimeout(() => {
+        let logoScene = document.getElementById('scene');
+        logoScene.classList.remove('scene-login');
+        logoScene.classList.add('scene-loop');
+      }, 3100);
   }
 
   login(formData) {
@@ -126,7 +131,6 @@ if (!this.loginForm.valid){
     }
   }
 
-
 gotoSignUp(event, item) {
   this.navCtrl.push(SignupPage, {
     item: item
@@ -137,6 +141,17 @@ skipAuth(event, item) {
   this.navCtrl.push(ChannelsPage, {
     item: item
   });
+}
+
+gotoAbout() {
+  let aboutModal = this.modalCtrl.create(AboutPage, { data: null }, {
+    enableBackdropDismiss: true,
+    enterAnimation: 'modal-scale-up-enter',
+    leaveAnimation: 'modal-scale-up-leave'
+  });
+  aboutModal.onDidDismiss(data => {
+  });
+  aboutModal.present();
 }
 
 }

@@ -28,7 +28,12 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  teal:       #00A0B1,
+  purple:       #A700AE,
+  darkPurple:       #643EBF,
+  orange:       #DC572E,
+  skyBlue:       #0A5BC4,
 );
 
 
@@ -85,6 +90,7 @@ $grid-max-widths: (
 );
 
 $background-color: #000;
+$toolbar-ios-background: rgba(0,0,0,0.0);
 
 $grid-padding-width: 0px;
 

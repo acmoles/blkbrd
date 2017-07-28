@@ -1,12 +1,21 @@
 login-page {
   /* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */
-
   @keyframes sceneIntro {
     0% {
       transform: translateY(20px) rotateX(-90deg) rotateY(45deg);
     }
+
     100% {
       transform: translateY(0) rotateX(-35deg) rotateY(45deg);
+    }
+  }
+  @keyframes sceneLoop {
+    0% {
+      transform: rotateX(-35deg) rotateY(45deg);
+    }
+
+    100% {
+      transform: rotateX(-25deg) rotateY(65deg);
     }
   }
 
@@ -15,5 +24,46 @@ login-page {
     animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   }
 
+  .scene-loop {
+    animation: sceneLoop 9s both;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
 
+}
+
+about-page {
+
+  ion-grid {
+    text-align: center;
+  }
+
+  @keyframes contextZoom {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.2) translateY(15px);
+    }
+  }
+
+  .image-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .context {
+    animation: contextZoom 10s forwards;
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/context.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 }

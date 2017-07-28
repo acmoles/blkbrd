@@ -51,6 +51,11 @@ body, html {
   border-color: #000;
 }
 
+.footer-ios .toolbar-background-ios, .header-ios .toolbar-background-ios {
+    border-style: none;
+    border-color: rgba(0,0,0,.3);
+}
+
 .scroll-content {
   -ms-overflow-style: none;
 }

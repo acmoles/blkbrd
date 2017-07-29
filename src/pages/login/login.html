@@ -51,13 +51,17 @@
         <ion-input class="item item-input" #password formControlName="password" type="password" placeholder="password"></ion-input>
         <button ion-button block outline color="light" style="margin-top: 12px;" type="submit" [disabled]="false">Login</button>
         <div (click)="reset($event)">
-          <p>Forgotten your password? Click
+          <p style="cursor: pointer;">Forgotten your password? Click
             <strong>Here</strong>
           </p>
         </div>
       </ion-list>
     </form>
-    <button ion-button block outline color="secondary" (click)="gotoSignUp($event)">Create New Account</button>
-    <button ion-button block outline color="primary" (click)="gotoAbout($event)" style="margin-top: 8px;">About</button>
+    <button ion-button block outline color="secondary" style="margin-bottom: 0;" (click)="gotoSignUp($event)">Create New Account</button>
+    <div (click)="gotoAbout($event)">
+      <p style="cursor: pointer;">What is this?
+        <strong>About</strong>
+      </p>
+    </div>
   </ion-grid>
 </ion-content>

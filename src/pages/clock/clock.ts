@@ -20,7 +20,7 @@ export class ClockPage {
   public currentUser: string;
   public colorChanging: boolean;
 
-  public fontscale: number = 0.5;
+  public fontscale: number = 0.75;
   public retryScale: any;
 
   public singleNumber: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];

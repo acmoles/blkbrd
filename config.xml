@@ -23,6 +23,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="SplashScreenBackgroundColor" value="black" />
+    <preference name="windows-target-version" value="10.0" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -79,18 +80,15 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <platform name="windows">
-        <icon src="resources/windows/icon/storelogo.png" target="StoreLogo" />
-        <icon src="resources/windows/icon/Square30x30Logo.png" target="Square30x30Logo" />
-        <icon src="resources/windows/icon/Square44x44Logo.png" target="Square44x44Logo" />
-        <icon src="resources/windows/icon/Square70x70Logo.png" target="Square70x70Logo" />
-        <icon src="resources/windows/icon/Square71x71Logo.png" target="Square71x71Logo" />
-        <icon src="resources/windows/icon/Square150x150Logo.png" target="Square150x150Logo" />
-        <icon src="resources/windows/icon/Square310x310Logo.png" target="Square310x310Logo" />
-        <icon src="resources/windows/icon/Wide310x150Logo.png" target="Wide310x150Logo" />
-    </platform>
-    <platform name="wp8">
-        <icon height="99" src="resources/wp8/ApplicationIcon.png" width="99" />
-        <icon height="159" src="resources/wp8/Background.png" width="159" />
+      <preference name="SplashScreenBackgroundColor" value="#000000" />
+      <splash src="resources/windows/splash/Splash620x300.scale-100.png" width="620" height="300" />
+      <splash src="resources/windows/splash/splashscreenphone.png" width="1152" height="1920" />
+      <icon src="resources/windows/icon/logo150x150.scale-100.png" width="150" height="150" />
+      <icon src="resources/windows/icon/logo310x310.scale-100.png" width="310" height="310" />
+      <icon src="resources/windows/icon/logo44x44.scale-100.png" width="44" height="44" />
+      <icon src="resources/windows/icon/logo50x50.scale-100.png" width="50" height="50" />
+      <icon src="resources/windows/icon/logo71x71.scale-100.png" width="71" height="71" />
+      <icon src="resources/windows/icon/wide310x150.scale-100.png" width="310" height="150" />
     </platform>
     <engine name="ios" />
     <engine name="android" spec="^6.2.3" />

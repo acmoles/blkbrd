@@ -1,5 +1,31 @@
 login-page {
-  /* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */
+  @keyframes bg-fade {
+    0% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+  .gradient-background {
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: #000;
+    background-image: radial-gradient(110px 110px ellipse at 50% 17%, #95A5A6, #343436);
+    animation: bg-fade 3s forwards;
+    animation-delay: 0.5s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
   @keyframes sceneIntro {
     0% {
       transform: translateY(20px) rotateX(-90deg) rotateY(45deg);

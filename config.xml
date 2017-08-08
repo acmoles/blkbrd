@@ -3,6 +3,7 @@
     <name>blkbrd</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<<<<<<< HEAD
     <content src="index.html"/>
     <access origin="*"/>
     <allow-navigation href="http://ionic.local/*"/>
@@ -23,6 +24,29 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="SplashScreenDelay" value="2000"/>
     <preference name="SplashScreenBackgroundColor" value="black"/>
+=======
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="http://ionic.local/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="FadeSplashScreenDuration" value="500" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashScreenBackgroundColor" value="black" />
+    <preference name="windows-target-version" value="10.0" />
+>>>>>>> 898fdba5b579da01c230e1b6be1f22e75927c906
     <platform name="android">
         <allow-intent href="market:*"/>
         <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
@@ -79,6 +103,7 @@
         <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
     </platform>
     <platform name="windows">
+<<<<<<< HEAD
         <icon src="resources/windows/icon/storelogo.png" target="StoreLogo"/>
         <icon src="resources/windows/icon/Square30x30Logo.png" target="Square30x30Logo"/>
         <icon src="resources/windows/icon/Square44x44Logo.png" target="Square44x44Logo"/>
@@ -91,6 +116,17 @@
     <platform name="wp8">
         <icon height="99" src="resources/wp8/ApplicationIcon.png" width="99"/>
         <icon height="159" src="resources/wp8/Background.png" width="159"/>
+=======
+      <preference name="SplashScreenBackgroundColor" value="#000000" />
+      <splash src="resources/windows/splash/Splash620x300.scale-100.png" width="620" height="300" />
+      <splash src="resources/windows/splash/splashscreenphone.png" width="1152" height="1920" />
+      <icon src="resources/windows/icon/logo150x150.scale-100.png" width="150" height="150" />
+      <icon src="resources/windows/icon/logo310x310.scale-100.png" width="310" height="310" />
+      <icon src="resources/windows/icon/logo44x44.scale-100.png" width="44" height="44" />
+      <icon src="resources/windows/icon/logo50x50.scale-100.png" width="50" height="50" />
+      <icon src="resources/windows/icon/logo71x71.scale-100.png" width="71" height="71" />
+      <icon src="resources/windows/icon/wide310x150.scale-100.png" width="310" height="150" />
+>>>>>>> 898fdba5b579da01c230e1b6be1f22e75927c906
     </platform>
     <engine name="ios"/>
     <engine name="android" spec="^6.2.3"/>

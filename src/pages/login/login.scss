@@ -13,6 +13,7 @@ login-page {
     }
   }
   .gradient-background {
+    z-index: -1;
     opacity: 0;
     top: 0;
     bottom: 0;
@@ -24,6 +25,10 @@ login-page {
     animation: bg-fade 3s forwards;
     animation-delay: 0.5s;
     animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  .invisible {
+    display: none;
   }
 
   @keyframes sceneIntro {

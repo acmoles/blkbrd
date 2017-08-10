@@ -8,7 +8,7 @@
 </ion-header> -->
 
 <ion-content padding="true" class="has-header app-load-fade">
-  <div class="gradient-background">
+  <div id="background" class="gradient-background">
   </div>
   <ion-grid fixed>
     <div class="logo-container">
@@ -59,7 +59,7 @@
         </div>
       </ion-list>
     </form>
-    <button ion-button block outline color="secondary" style="margin-bottom: 0;" (click)="gotoSignUp($event)">Create New Account</button>
+    <button ion-button block full color="light" style="margin-bottom: 0;" (click)="gotoSignUp($event)">Create New Account</button>
     <div (click)="gotoAbout($event)">
       <p style="cursor: pointer;">What is this?
         <strong>About</strong>

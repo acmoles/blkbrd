@@ -39,11 +39,11 @@ export class LoginPage {
         logoScene.classList.add('scene-loop');
       }, 3100);
 
-      setTimeout(() => {
-        let background = document.getElementById('background');
-        background.classList.remove('gradient-background');
-        background.classList.add('invisible');
-      }, 3600);
+      // setTimeout(() => {
+      //   let background = document.getElementById('background');
+      //   background.classList.remove('gradient-background');
+      //   background.classList.add('invisible');
+      // }, 3600);
   }
 
   login(formData) {

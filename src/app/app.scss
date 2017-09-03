@@ -29,6 +29,10 @@ body, html {
   width: 0;
 }
 
+.alert-ios .alert-input {
+  border-radius: 0;
+}
+
 @keyframes opacityInApp {
   0% {
     opacity: 0;

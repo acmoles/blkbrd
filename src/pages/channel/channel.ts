@@ -14,7 +14,7 @@ import * as Rx from 'rxjs';
 })
 export class ChannelPage {
   @ViewChild(Slides) slides: Slides;
-  public haveSlides: boolean = true;
+  public haveSlides: boolean = false;
 
   public isVisible: boolean = true;
   public isInvisible: boolean = false;
@@ -53,24 +53,6 @@ export class ChannelPage {
       console.log('messages incoming: ')
       console.log(this.messages);
     });
-
-    this.initialTimout = setTimeout(() => {
-      this.isVisible = false;
-      this.isInvisible = true;
-      this.touchOverlay = true;
-    }, 8000);
-
-    this.slides.ionSlideDidChange.subscribe(() => {
-      clearTimeout(this.overlayTimeout);
-      clearTimeout(this.initialTimout);
-      this.overlayTimeout = setTimeout(() => {
-        this.isVisible = false;
-        this.isInvisible = true;
-        this.touchOverlay = true;
-      }, 10000);
-    })
-
-    this.scaleFont(this.fontscale);
   }
 
   ionViewDidEnter() {
@@ -81,20 +63,52 @@ export class ChannelPage {
         .catch((error: any) => console.log(error));
     }, 10000)
 
+    setTimeout(() => {
+    this.haveSlides = true;
+    this.subscribeSlideChange();
+    }, 2000);
+
+    this.initialTimout = setTimeout(() => {
+      this.isVisible = false;
+      this.isInvisible = true;
+      this.touchOverlay = true;
+    }, 8000);
+
+    this.scaleFont(this.fontscale);
+
     window.addEventListener('orientationchange', () => {
       console.log('orientation changed');
       this.haveSlides = false;
-      // this.haveSlides = true;
       setTimeout(() => {
       this.haveSlides = true;
       this.scaleFont(this.fontscale);
-      }, 500);
+      }, 700);
     });
 
     window.addEventListener('resize', () => {
       this.scaleFont(this.fontscale);
     });
   }
+
+subscribeSlideChange() {
+
+  if (typeof this.slides != 'undefined') {
+    this.slides.ionSlideDidChange.subscribe(() => {
+      clearTimeout(this.overlayTimeout);
+      clearTimeout(this.initialTimout);
+      this.overlayTimeout = setTimeout(() => {
+        this.isVisible = false;
+        this.isInvisible = true;
+        this.touchOverlay = true;
+      }, 10000);
+    })
+  } else {
+    setTimeout(() => {
+      this.subscribeSlideChange();
+    }, 500);
+  }
+
+}
 
   scaleFont(f) {
     let container = document.getElementById('fontScaler');

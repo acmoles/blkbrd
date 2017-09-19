@@ -183,12 +183,7 @@ export class ChannelsPage {
               role: 'cancel',
               handler: (data) => {
                 if (data.password === channel.password) {
-                  let loader = this.loadingCtrl.create();
-                  loader.present();
-                  setTimeout(() => {
-                    loader.dismiss();
-                    this.navCtrl.push(ChannelPage, params);
-                  }, 2000)
+                  this.navCtrl.push(ChannelPage, params);
                 } else {
                   passwordAlert.data.message = "Wrong password"
                   return false;

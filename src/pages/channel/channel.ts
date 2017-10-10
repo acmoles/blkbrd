@@ -66,7 +66,7 @@ export class ChannelPage {
     setTimeout(() => {
     this.haveSlides = true;
     this.subscribeSlideChange();
-    }, 2000);
+  }, 400);
 
     this.initialTimout = setTimeout(() => {
       this.isVisible = false;
